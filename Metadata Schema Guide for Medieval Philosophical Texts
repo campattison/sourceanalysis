@@ -1,0 +1,31 @@
+def create_metadata_template(
+    title: str,
+    author: str,
+    language: str,
+    date: str
+) -> dict:
+    """Creates a basic metadata template with required fields."""
+    return {
+        "text_id": f"{author.lower()}_{title.lower()}_{language.lower()}",
+        "bibliographic_info": {
+            "title": {
+                "original": "",
+                "transliterated": "",
+                "english": title
+            },
+            "author": {
+                "name": {
+                    "standard": author,
+                    "variants": []
+                }
+            },
+            "language": {
+                "primary": language
+            }
+        },
+        "composition_details": {
+            "date": {
+                "century": date
+            }
+        }
+    }
