@@ -1,159 +1,174 @@
-# Source Text Identification System (STIS)
+# Source Analysis System: Computational Approaches to Philosophical Text Analysis
 
-Leveraging Large Language Models for Medieval Philosophical Research
+## Overview
 
-Overview
+The Source Analysis System is a sophisticated computational pipeline designed to analyze philosophical texts, identify thematic connections, and trace potential influences between ancient works. This system combines natural language processing, machine learning, and classical scholarship to provide evidence-based insights into textual relationships that might otherwise remain hidden.
 
-This repository contains a proposal for using Large Language Models (LLMs) to identify potential source texts for medieval philosophical works. The system combines multiple analytical approaches, including pattern recognition, cross-language analysis, argument structure mapping, and contextual analysis, to create a comprehensive tool for philosophical research.
+## Problem Statement
 
-Abstract
+- **Challenge**: Tracing the transmission of ideas across philosophical traditions is traditionally labor-intensive and limited by human capacity
+- **Limitations of Current Approaches**:
+  - Manual analysis is time-consuming and subject to individual scholar biases
+  - Existing computational methods often lack the nuance needed for philosophical texts
+  - Cross-linguistic analysis presents additional challenges
+- **Opportunity**: Leverage AI to augment scholarly analysis while maintaining rigorous standards
 
-This project aims to develop a system that assists scholars in identifying the original sources that influenced medieval philosophical texts. The system will recognize patterns and connections across different languages and time periods, helping to identify texts that might otherwise go unnoticed.
+## Three-Stage Pipeline
 
-Non-Technical Explanation
+Our system employs a three-stage pipeline that progressively refines the analysis:
 
-The goal is to create a computer system that helps scholars track the intellectual “family tree” of philosophical ideas. This system will analyze philosophical texts in multiple languages, identifying connections and influences that human readers might miss.
+### 1. Thematizer
 
-System Architecture
+**Purpose**: Initial broad analysis of texts to identify themes, structure, and key concepts
 
-Core Components
+**Process**:
+- Ingests raw text files from input and database directories
+- Performs deep thematic analysis using Claude AI
+- Extracts metadata, themes, abstracts, and structural breaks
+- Generates comprehensive thematic profiles for each text
 
-The proposed system consists of five main components:
+**Output**:
+- JSON data with detailed thematic analysis
+- Human-readable summary reports
+- Foundation for subsequent analysis stages
 
-	1.	Text Processing Engine
-	2.	Pattern Recognition Module
-	3.	Cross-Language Analysis System
-	4.	Argument Structure Analyzer
-	5.	Contextual Analysis Framework
+### 2. Source Analyzer
 
-Implementation Details
+**Purpose**: Compare texts to identify potential relationships and influences
 
-	•	Text Processing Engine: Uses Python and the HuggingFace transformers library to tokenize and process multilingual texts.
+**Process**:
+- Takes thematizer results as input
+- Performs pairwise comparisons between input texts and database texts
+- Identifies verbal parallels, conceptual parallels, methodological similarities
+- Calculates confidence scores based on multiple factors
 
-from transformers import AutoTokenizer, AutoModel
+**Output**:
+- Detailed comparison reports with evidence of relationships
+- Confidence scores indicating likelihood of influence
+- Recommendations for further research
 
-class TextProcessor:
-    def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-cased")
-        self.model = AutoModel.from_pretrained("bert-base-multilingual-cased")
-        
-    def process_text(self, text):
-        tokens = self.tokenizer(text, return_tensors="pt", padding=True, truncation=True)
-        outputs = self.model(**tokens)
-        return outputs.last_hidden_state
+### 3. Deep Analyzer
 
-	•	Pattern Recognition Module: Analyzes both semantic and syntactic patterns in texts.
+**Purpose**: Perform in-depth analysis of high-confidence matches
 
-class PatternRecognizer:
-    def __init__(self):
-        self.semantic_analyzer = SemanticAnalyzer()
-        self.syntactic_analyzer = SyntacticAnalyzer()
-        
-    def identify_patterns(self, text):
-        semantic_patterns = self.semantic_analyzer.analyze(text)
-        syntactic_patterns = self.syntactic_analyzer.analyze(text)
-        return self.combine_patterns(semantic_patterns, syntactic_patterns)
+**Process**:
+- Focuses only on text pairs with high confidence scores (≥0.7)
+- Analyzes three key dimensions:
+  - Transmission patterns (direct textual dependencies, conceptual dependencies)
+  - Philosophical development (argument structure, conceptual frameworks)
+  - Linguistic transformation (technical terminology, argumentative language)
+- Provides concrete evidence for each observation
 
-	•	Cross-Language Analysis: Utilizes multilingual models for cross-language text analysis and concept alignment.
+**Output**:
+- Comprehensive analysis of textual relationships
+- Evidence-based assessment of influence patterns
+- Detailed reports suitable for scholarly use
 
-class CrossLanguageAnalyzer:
-    def __init__(self):
-        self.models = {'arabic': load_arabic_model(), 'greek': load_greek_model(), 'latin': load_latin_model()}
-        
-    def align_concepts(self, text, source_lang, target_lang):
-        source_embedding = self.models[source_lang](text)
-        aligned_concepts = self.find_alignments(source_embedding, target_lang)
-        return aligned_concepts
+## Technical Implementation
 
-API Integration
+- **Languages and Libraries**:
+  - Python for core processing logic
+  - OpenAI and Anthropic APIs for AI-powered analysis
+  - JSON for structured data storage and exchange
 
-We use the OpenAI GPT-4 API for advanced philosophical text analysis.
+- **System Architecture**:
+  - Modular design with clear separation of concerns
+  - Robust error handling and retry mechanisms
+  - Comprehensive logging for transparency and debugging
 
-import openai
+- **AI Integration**:
+  - Strategic prompt engineering for specialized analysis
+  - Model selection based on analytical requirements
+  - Validation and verification of AI outputs
 
-class GPTAnalyzer:
-    def __init__(self, api_key):
-        openai.api_key = api_key
-        
-    async def analyze_text(self, text):
-        response = await openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                {"role": "system", "content": "Analyze this philosophical text for potential sources"},
-                {"role": "user", "content": text}
-            ]
-        )
-        return response.choices[0].message.content
+## Case Study: Al-Farabi and Aristotle
 
-Database Architecture
+Our system has been tested on analyzing the relationship between Al-Farabi's "Risālah fī qawānīn ṣināʿat al-šuʿarāʾ" and Aristotle's works:
 
-The system uses PostgreSQL to store and index philosophical texts. Each text is stored with its associated embeddings for fast similarity search.
+- **Initial Findings**:
+  - Strong thematic connections to Aristotle's "Poetics" (0.85 confidence)
+  - Moderate connections to "Analytica Posteriora"
+  - Shared concepts of mimesis and poetic categorization
 
-CREATE TABLE philosophical_texts (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255),
-    author VARCHAR(255),
-    period DATE,
-    language VARCHAR(50),
-    text_content TEXT,
-    embeddings VECTOR(1536)
-);
+- **Key Insights**:
+  - Identified specific verbal parallels between Arabic and Greek texts
+  - Traced conceptual adaptations across linguistic boundaries
+  - Provided evidence-based assessment of transmission pathways
 
-CREATE INDEX embedding_index ON philosophical_texts USING ivfflat (embeddings vector_cosine_ops);
+## Significance for Humanities
 
-Analysis Workflows
+- **Enhanced Research Capabilities**:
+  - Ability to process and compare large volumes of text
+  - Identification of connections that might be missed in manual analysis
+  - Cross-linguistic analysis without requiring scholar fluency in all languages
 
-Semantic Pattern Detection
+- **Methodological Innovation**:
+  - Combines traditional philological methods with computational approaches
+  - Provides quantitative measures while preserving qualitative insights
+  - Creates reproducible and transparent analytical processes
 
-	1.	Text Preprocessing: Tokenization, embedding generation, and semantic chunking.
-	2.	Pattern Analysis: N-gram analysis, semantic clustering, frequency analysis.
-	3.	Source Matching: Embedding comparison, similarity scoring, and ranking potential matches.
+- **New Research Directions**:
+  - Enables systematic mapping of influence networks
+  - Facilitates testing of historical transmission hypotheses
+  - Opens possibilities for macro-level analysis of philosophical traditions
 
-Argument Structure Analysis
+## Significance for Engineering
 
-	1.	Argument Extraction: Premise identification, conclusion detection, logical connection mapping.
-	2.	Structure Comparison: Pattern matching, structure alignment, and similarity scoring.
+- **Novel AI Applications**:
+  - Specialized use of large language models for scholarly analysis
+  - Domain-specific prompt engineering techniques
+  - Multi-stage analytical pipeline with progressive refinement
 
-Timeline
+- **Technical Challenges Addressed**:
+  - Cross-linguistic text comparison
+  - Handling of specialized philosophical vocabulary
+  - Balancing precision and recall in influence detection
 
-	•	Phase 1 (Months 1-2): Basic infrastructure setup, text processing engine implementation, and initial database schema creation.
-	•	Phase 2 (Months 3-4): Development of pattern recognition and cross-language analysis modules, API integrations.
-	•	Phase 3 (Months 5-6): Argument structure analysis, contextual analysis, and user interface development.
-	•	Phase 4 (Months 7-8): System testing, refinement, and documentation.
+- **Extensible Framework**:
+  - Modular design allows for integration of additional analytical tools
+  - Pipeline approach enables continuous improvement of individual components
+  - Structured outputs facilitate integration with other systems
 
-Resource Requirements
+## Limitations and Challenges
 
-Computing Resources
+- **AI Limitations**:
+  - Models may occasionally hallucinate connections
+  - Performance varies based on language and time period
+  - Requires careful validation by domain experts
 
-	•	GPU: NVIDIA A100 or equivalent
-	•	Storage: 10TB minimum
-	•	RAM: 128GB minimum
+- **Data Challenges**:
+  - Quality of input texts affects analysis quality
+  - Limited availability of digitized ancient texts
+  - Handling of textual variants and translations
 
-Software
+- **Methodological Considerations**:
+  - Balance between computational efficiency and analytical depth
+  - Need for transparency in AI-assisted scholarship
+  - Integration with existing scholarly practices
 
-	•	Python 3.9+
-	•	PostgreSQL 13+
-	•	PyTorch 2.0+
-	•	HuggingFace Transformers library
+## Future Directions
 
-API Requirements
+- **Technical Enhancements**:
+  - Integration of specialized language models for ancient languages
+  - Improved visualization of influence networks
+  - Enhanced cross-linguistic comparison capabilities
 
-	•	OpenAI API access
-	•	Database API access
-	•	Custom API development
+- **Scholarly Applications**:
+  - Expansion to additional philosophical traditions
+  - Longitudinal analysis of concept evolution
+  - Collaborative platforms for AI-assisted scholarship
 
-Expected Outcomes
+- **Interdisciplinary Opportunities**:
+  - Bridging computational linguistics and classical studies
+  - Developing shared methodologies across humanities computing
+  - Creating standards for computational analysis in philosophical research
 
-	1.	Automated source text identification system.
-	2.	A database of philosophical text relationships.
-	3.	Cross-language concept mapping.
-	4.	Argument structure database.
-	5.	Research acceleration tools.
+## Conclusion
 
-Future Extensions
+The Source Analysis System represents a significant step forward in computational approaches to philosophical text analysis. By combining the strengths of AI with traditional scholarly methods, it offers new possibilities for understanding the complex relationships between texts across time, language, and tradition.
 
-	•	Integration with existing philosophical databases.
-	•	Expanded language support.
-	•	Advanced visualization tools.
-	•	Collaborative research features.
-	•	Machine learning model fine-tuning capabilities.
+This project demonstrates the potential of thoughtful AI integration in humanities research—not replacing human scholars, but augmenting their capabilities and opening new avenues for discovery.
+
+## Contact
+
+For more information about this project, please contact [Your Contact Information]. 
