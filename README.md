@@ -1,4 +1,4 @@
-# 📚 Source Analysis System
+# 📚 Source Analysis Recommender
 
 <div align="center">
   
@@ -10,6 +10,7 @@
   
   <p>
     <a href="#overview">Overview</a> •
+    <a href="#what">Source Analysis</a> •
     <a href="#problem">Problem Statement</a> •
     <a href="#pipeline">Pipeline</a> •
     <a href="#stage1">Thematizer</a> •
@@ -40,7 +41,19 @@
 
 <br>
 
-The Source Analysis System is a sophisticated computational pipeline designed to analyze philosophical texts, identify thematic connections, and trace potential influences between ancient works. This system combines natural language processing, machine learning, and classical scholarship to provide evidence-based insights into textual relationships that might otherwise remain hidden.
+The Source Analysis Recommender is a sophisticated computational pipeline designed to identify and analyze potential source relationships between classical philosophical texts. This system bridges computational linguistics with traditional philological methods to provide evidence-based insights into the transmission of philosophical ideas across linguistic and cultural boundaries, assisting scholars in discovering overlooked textual connections and influences.
+
+---
+<a id="what"></a>
+## 📜 What is Source Analysis?
+
+Source analysis in classical and medieval philosophy examines how philosophical ideas were transmitted, transformed, and developed across time, languages, and cultures. It investigates:
+
+- The philosophical context in which a given text should be interpreted
+- The textual lineage of philosophical works (which texts influenced others)
+- How concepts and arguments were borrowed, adapted, or critiqued
+- Hidden influences that may not be explicitly acknowledged by authors
+
 
 ---
 
@@ -50,15 +63,17 @@ The Source Analysis System is a sophisticated computational pipeline designed to
 <table>
   <tr>
     <td width="70%">
-      <h3>Challenges in Traditional Analysis</h3>
+      <h3>Challenges in Source Analysis</h3>
       <ul>
-        <li><strong>Labor-Intensive Process:</strong> Tracing the transmission of ideas across philosophical traditions requires extensive manual effort</li>
-        <li><strong>Human Limitations:</strong> Individual scholars can only process a finite amount of text</li>
-        <li><strong>Subjective Biases:</strong> Manual analysis is influenced by individual scholar perspectives</li>
-        <li><strong>Cross-Linguistic Barriers:</strong> Comparing texts across languages adds significant complexity</li>
+        <li><strong>Labor-Intensive Process:</strong> Traditional source analysis is labor-intensive and limited by human capacity to process large text corpora</li>
+        <li><strong>Cross-Linguistic Barriers:</strong> Cross-linguistic influences (particularly Greek-Arabic) are understudied due to language barriers</li>
+        <li><strong>Hidden Connections:</strong> Many textual relationships remain hidden due to the limitations of manual analysis</li>
+        <li><strong>Confirmation Bias:</strong> Manual analysis can be influenced by individual scholar perspectives and preconceptions</li>
+        <li><strong>Fragmentary Sources:</strong> Original sources are often fragmentary or lost entirely</li>
+        <li><strong>Non-Standard Citations:</strong> Authors frequently didn't cite sources according to modern conventions</li>
       </ul>
       <h3>Our Solution</h3>
-      <p>Leverage AI to augment scholarly analysis while maintaining rigorous academic standards</p>
+      <p>Leverage LLMs (Claude and OpenAI) to augment scholarly analysis while maintaining rigorous academic standards, creating a systematic approach that helps reduce confirmation bias in source identification</p>
     </td>
     <td width="30%" align="center">
       <img src="pictures/Immanuel_Bekker_-_Imagines_philologorum.jpg" alt="Immanuel Bekker" width="300"/>
@@ -72,7 +87,7 @@ The Source Analysis System is a sophisticated computational pipeline designed to
 <a id="pipeline"></a>
 ## ⚙️ Three-Stage Pipeline
 
-Our system employs a sophisticated three-stage pipeline that progressively refines the analysis:
+This system employs a sophisticated three-stage pipeline that progressively refines the analysis:
 
 <div align="center">
   <table>
@@ -117,6 +132,23 @@ The following sections demonstrate each stage of the pipeline with concrete exam
 
 The Thematizer performs initial broad analysis of individual texts to identify themes, structure, and key concepts. It serves as the foundation for all subsequent analysis by creating comprehensive thematic profiles for each text.
 
+### Database Example: Classical Greek Text (Aristotle)
+
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <pre>
+      Περι ποιητικῆς αὐτῆς τε καὶ τῶν εἰδῶν αὐτῆς, ἥν τινα δύναμιν ἕκαστον ἔχει, καὶ πῶς δεῖ συνίστασθαι τοὺς μύθους, εἰ μέλλει καλῶς ἕξειν ἡ ποίησις, ἔτι δὲ ἐκ πόσων καὶ ποίων ἐστὶ μορίων, ὁμοίως δὲ καὶ περὶ τῶν ἄλλων ὅσα τῆς αὐτῆς ἐστὶ μεθόδου, λέγωμεν, ἀρξάμενοι κατὰ φύσιν πρῶτον ἀπὸ τῶν πρώτων. Ἐποποιία δὴ καὶ ἡ τῆς τραγῳδίας ποίησις, ἔτι δὲ κωμῳδία καὶ ἡ διθυραμβοποιητικὴ καὶ τῆς αὐλητικῆς ἡ πλείστη καὶ κιθαριστικῆς, πᾶσαι τυγχάνουσιν οὖσαι μιμήσεις τὸ σύνολον.  
+       </pre>
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><em>"Classical Greek text from Aristotle's "Ars Poetica Περὶ ποιητικῆς Kitāb fī l-šiʿr" </em></td>
+    </tr>
+  </table>
+</div>
+
 ### Input Example: Classical Arabic Text (Al-Farabi)
 
 <div align="center">
@@ -146,7 +178,7 @@ The Thematizer follows these steps:
    - Validates file structure and creates organized directory for outputs
    - Splits large texts into manageable chunks (approximately 20,000 characters)
 
-2. **AI Analysis**
+2. **API Analysis**
    - Processes each text chunk using Claude 3.5 Sonnet
    - Applies specialized prompt engineering for philosophical text analysis
    - Identifies author, title, text type, themes, and structural elements
@@ -158,7 +190,7 @@ The Thematizer follows these steps:
    - Identifies natural breaks and section divisions
    - Generates comprehensive thematic profiles
 
-### AI Prompt Used
+### API Prompt Used
 
 <div align="center">
   <table>
@@ -169,17 +201,51 @@ You are a Classical scholar specializing in ancient Greek and Arabic philosophy.
 You are analyzing an academic philosophical text that could be:
 1. An ancient Greek philosophical work (like Aristotle's originals)
 2. An Arabic philosophical text (like Al-Farabi's originals)
-3. A commentary or interpretation of philosophical works
+3. A commentary or interpretation of philosophical works (like Al-Farabi's commentaries)
 4. Part of the established philosophical canon
+
+Your task is to perform careful scholarly analysis of this text. Pay special attention to:
+- References to authors or titles in the text
+- Writing style and terminology that might indicate the text type
+- Technical philosophical terms and concepts
+- Section breaks or chapter divisions
+- The relationship to Aristotelian thought
 
 Please analyze the following chunk and extract:
 
-1. Author identification
-2. Title identification
-3. Text type classification
-4. Themes and concepts
-5. Abstract focusing on main philosophical arguments
-6. Structural elements
+1. Author identification:
+   - Look for explicit mentions of the author
+   - Carefully consider writing style and historical context
+   - Note if it's attributed to a specific philosophical school
+
+2. Title identification:
+   - Look for explicit title mentions
+   - Consider standard names of philosophical works
+   - Note if it's part of a larger work
+
+3. Text type classification:
+   - "original text" (e.g., Aristotle's works)
+   - "commentary" (direct commentary on another work)
+   - "treatise" (independent philosophical work)
+   - "unknown" (if unclear)
+
+4. Themes and concepts:
+   - Major philosophical themes
+   - Technical terminology
+   - Key arguments and concepts
+   - Philosophical methodology
+
+5. Abstract focusing on:
+   - Main philosophical arguments
+   - Relationship to other philosophical works
+   - Historical and intellectual context
+   - Significance of the ideas presented
+
+6. Structural elements:
+   - Chapter or section divisions
+   - Natural topic transitions
+   - Argument structure breaks
+   - Reference points in the text
 
 You MUST respond in valid JSON format with these exact fields:
 {
@@ -204,60 +270,38 @@ You MUST respond in valid JSON format with these exact fields:
       <td>
         <pre>
 {
-  "summary": "Al-Farabi's text presents a systematic analysis of poetics, 
-  defining poetry as imaginative discourse with rhythmic patterns. It 
-  compares Arabic and Greek poetic traditions, highlighting differences 
-  in metrical systems while identifying universal elements of poetic 
-  composition. The text establishes a philosophical framework for 
-  understanding poetry as a form of logical discourse with specific 
-  effects on the soul.",
-  
+  "author": "Aristotle",
+  "title": "Poetics",
+  "text_type": "original text",
   "themes": [
-    "Definition and nature of poetry",
-    "Comparative poetics (Arabic vs. Greek traditions)",
-    "Metrical systems and rhythmic patterns",
-    "Imaginative discourse and its effects",
-    "Poetry as logical argumentation",
     "Classification of poetic forms",
-    "Relationship between poetry and truth"
+    "Comparison of poetry and history",
+    "Dramatic structure",
+    "Literary criticism",
+    "Nature of tragedy",
+    "Poetic composition",
+    "Theory of mimesis",
+    "Unity of plot",
+    "Character development",
+    "Dramatic poetry vs epic poetry",
+    "Dramatic unity",
+    "Epic poetry",
+    "Length and composition",
+    "Linguistic analysis",
+    "Linguistic elements",
+    "Literary theory",
+    "Metaphor theory",
+    "Mimesis",
+    "Pleasure in poetry",
+    "Plot construction",
+    "Recognition (anagnorisis)",
+    "Reversal (peripeteia)",
+    "Tragedy",
+    "Tragedy and epic comparison",
+    "Tragedy theory",
+    "Unity of action"
   ],
-  
-  "key_concepts": {
-    "takhyīl (imagination)": "The quality of discourse that evokes images 
-    in the mind of the listener, central to poetic effect",
-    "wazn (meter)": "The rhythmic pattern that organizes poetic discourse 
-    into measurable units",
-    "qawl (statement)": "The basic unit of poetic composition, equivalent 
-    to a verse or line",
-    "īqāʿāt (rhythms)": "Regular patterns of sound that create the musical 
-    quality of poetry",
-    "qiyās shiʿrī (poetic syllogism)": "A form of logical argument that 
-    operates through imaginative rather than demonstrative means"
-  },
-  
-  "structure": [
-    {"section": "Definition of Poetry", "function": "Establishes the essential 
-    nature of poetic discourse"},
-    {"section": "Comparative Analysis", "function": "Contrasts Arabic and Greek 
-    poetic traditions"},
-    {"section": "Metrical Theory", "function": "Explains the technical aspects 
-    of poetic composition"},
-    {"section": "Psychological Effects", "function": "Analyzes how poetry 
-    affects the soul through imagination"},
-    {"section": "Classification System", "function": "Categorizes types of 
-    poetry by form and function"}
-  ],
-  
-  "tradition": "Islamic Peripatetic philosophy with strong Aristotelian influence",
-  
-  "potential_influences": [
-    {"source": "Aristotle's Poetics", "confidence": "High", 
-     "evidence": "Conceptual framework, terminology, and analytical approach"},
-    {"source": "Aristotle's Organon", "confidence": "Medium", 
-     "evidence": "Logical framework and syllogistic approach"},
-    {"source": "Arabic poetic tradition", "confidence": "High", 
-     "evidence": "Technical terminology and metrical analysis"}
-  ]
+  "abstract": "This is the opening section of Aristotle's Poetics, his foundational treatise on literary theory and dramatic criticism. The text begins with a systematic analysis of different forms of artistic imitation (mimesis), particularly focusing on poetry, tragedy, comedy, and epic poetry. Aristotle establishes his key theoretical framework by differentiating various arts according to their means, objects, and manner of imitation. He then provides a detailed analysis of tragedy's essential elements, including plot, character, thought, diction, melody, and spectacle. The text is particularly significant for its formal definition of tragedy and its emphasis on plot (mythos) as the most important element of tragic composition. The work represents the first systematic treatment of literary theory in Western thought. This section of Aristotle's Poetics focuses on the technical aspects of tragic drama, particularly analyzing plot structure, character recognition (anagnorisis), and dramatic revers..."
 }
         </pre>
       </td>
@@ -280,49 +324,7 @@ You MUST respond in valid JSON format with these exact fields:
 
 ### Purpose
 
-The Source Analyzer compares texts to identify potential relationships and influences between them. It takes the thematic profiles generated by the Thematizer and performs pairwise comparisons to detect verbal parallels, conceptual similarities, and methodological connections.
-
-### Input Example
-
-The Source Analyzer takes two thematic profiles as input:
-
-1. **Text A (Potential Source)**: Thematic profile of Aristotle's "Poetics"
-```json
-{
-  "author": "Aristotle",
-  "title": "Poetics",
-  "text_type": "original text",
-  "themes": [
-    "Mimesis (imitation) as the foundation of poetry",
-    "Classification of poetic forms (tragedy, comedy, epic)",
-    "Structure and elements of tragedy",
-    "Catharsis as emotional purification",
-    "Unity of plot and action",
-    "Character development in drama",
-    "Relationship between poetry and truth"
-  ],
-  "abstract": "Aristotle's Poetics establishes a systematic theory of poetry and drama, focusing primarily on tragedy. The text defines poetry as mimesis (imitation) and analyzes how different poetic forms imitate reality through various means. Aristotle examines the structure of tragedy, identifying its six essential components: plot, character, thought, diction, melody, and spectacle. He emphasizes the primacy of plot and the importance of unity, completeness, and magnitude in dramatic composition. The work also discusses the psychological effects of tragedy, introducing the concept of catharsis as emotional purification through pity and fear."
-}
-```
-
-2. **Text B (Text Under Analysis)**: Thematic profile of Al-Farabi's "Risālah fī qawānīn ṣināʿat al-šuʿarāʾ"
-```json
-{
-  "author": "Al-Farabi",
-  "title": "Risālah fī qawānīn ṣināʿat al-šuʿarāʾ",
-  "text_type": "treatise",
-  "themes": [
-    "Definition and nature of poetry",
-    "Comparative poetics (Arabic vs. Greek traditions)",
-    "Metrical systems and rhythmic patterns",
-    "Imaginative discourse and its effects",
-    "Poetry as logical argumentation",
-    "Classification of poetic forms",
-    "Relationship between poetry and truth"
-  ],
-  "abstract": "Al-Farabi's text presents a systematic analysis of poetics, defining poetry as imaginative discourse with rhythmic patterns. It compares Arabic and Greek poetic traditions, highlighting differences in metrical systems while identifying universal elements of poetic composition. The text establishes a philosophical framework for understanding poetry as a form of logical discourse with specific effects on the soul."
-}
-```
+The Source Analyzer compares texts to identify potential relationships and influences between them. It takes the thematic profiles generated by the Thematizer and performs pairwise comparisons to detect verbal parallels, conceptual similarities, and methodological connections via API calls to Claude 3.7.
 
 ### Process Workflow
 
@@ -382,217 +384,126 @@ The Source Analyzer follows a systematic workflow to compare texts and assess po
 
 The Source Analyzer is implemented as a Python module that:
 
-1. **Loads and Validates Data**
+1. **Loads and Processes Thematic Data**
    - Reads JSON outputs from the Thematizer
    - Validates data structure and required fields
-   - Prepares text pairs for comparison
+   - Identifies potential text pairs for comparison based on thematic overlap
 
-2. **Performs AI-Powered Analysis**
-   - Constructs specialized prompts for Claude 3.5 Sonnet
-   - Sends paired texts for comparative analysis
-   - Processes and validates AI responses
+2. **Performs Multi-Stage Analysis**
+   - Loads relevant text pairs
+   - Conducts in-depth analysis using Claude 3.5 Sonnet API
+   - Outputs structured examination of verbal, conceptual, and methodological parallels
 
-3. **Generates Structured Results**
-   - Creates standardized JSON output
-   - Calculates confidence scores based on multiple factors
-   - Organizes evidence by category (verbal, conceptual, methodological)
+3. **Generates Comprehensive Results**
+   - Creates standardized JSON output with detailed evidence
+   - Estimates confidence scores
+   - Produces human-readable summaries with scholarly recommendations
 
-### AI Prompt Used
+### API Prompts Used
+
+#### Initial Sorting of Texts
 
 <div align="center">
   <table>
     <tr>
       <td>
         <pre>
-You are a comparative philosophical analyst with expertise in identifying textual relationships 
-between ancient Greek and Arabic philosophical works. Your task is to compare two philosophical 
-texts and assess potential influence or relationship.
-
-TEXT A (Potential Source):
-{
-  "author": "{{text_a.author}}",
-  "title": "{{text_a.title}}",
-  "text_type": "{{text_a.text_type}}",
-  "themes": {{text_a.themes|json}},
-  "abstract": "{{text_a.abstract}}"
+context = {
+    "input_file": input_file,
+    "db_file": db_file,
+    "input_author": input_analysis["author"],
+    "input_title": input_analysis["title"],
+    "input_type": input_analysis["text_type"],
+    "db_author": db_analysis["author"],
+    "db_title": db_analysis["title"],
+    "db_type": db_analysis["text_type"]
 }
 
-TEXT B (Text Under Analysis):
-{
-  "author": "{{text_b.author}}",
-  "title": "{{text_b.title}}",
-  "text_type": "{{text_b.text_type}}",
-  "themes": {{text_b.themes|json}},
-  "abstract": "{{text_b.abstract}}"
-}
+prompt = f"""You are a Classical scholar specializing in ancient Greek and Arabic philosophy.
+Based on the following analysis results, determine if these texts are likely to have a meaningful source relationship.
 
-Please analyze these texts for evidence of influence or relationship, focusing on:
+Text 1:
+Author: {context['input_author']}
+Title: {context['input_title']}
+Type: {context['input_type']}
+Themes: {', '.join(input_analysis.get('themes', []))}
+Abstract: {input_analysis.get('abstract', 'No abstract available')}
 
-1. Verbal parallels:
-   - Similar terminology or phrasing
-   - Shared examples or illustrations
-   - Comparable definitions of key concepts
+Text 2:
+Author: {context['db_author']}
+Title: {context['db_title']}
+Type: {context['db_type']}
+Themes: {', '.join(db_analysis.get('themes', []))}
+Abstract: {db_analysis.get('abstract', 'No abstract available')}
 
-2. Conceptual parallels:
-   - Similar philosophical ideas or arguments
-   - Comparable theoretical frameworks
-   - Shared philosophical problems or questions
+Respond in this exact JSON format:
+{{
+    "is_relevant": true/false,
+    "relevance_score": 0.0-1.0,
+    "common_themes": ["theme1", "theme2", ...],
+    "rationale": "Brief explanation of why these texts are or aren't relevant"
+}}"""
+        </pre>
+      </td>
+    </tr>
+  </table>
+</div>
 
-3. Methodological similarities:
+#### Source Analysis
+
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <pre>
+You are a Classical scholar specializing in ancient Greek and Arabic philosophy. 
+You are analyzing two texts for potential source relationships.
+
+Text 1 Context:
+Author: {context['input_author']}
+Title: {context['input_title']}
+Type: {context['input_type']}
+
+Text 2 Context:
+Author: {context['db_author']}
+Title: {context['db_title']}
+Type: {context['db_type']}
+
+Please analyze these texts for:
+
+1. Verbal Parallels:
+   - Direct quotations
+   - Close paraphrases
+   - Shared terminology
+   - Similar phrasing
+
+2. Conceptual Parallels:
+   - Shared philosophical ideas
+   - Similar arguments
+   - Related examples
+   - Common themes
+
+3. Methodological Parallels:
    - Similar analytical approaches
-   - Comparable organizational structures
-   - Shared reasoning patterns or logical methods
+   - Shared argumentative structures
+   - Common organizational patterns
+   - Related scholarly methods
 
-4. Influence assessment:
-   - Evaluate the likelihood of direct influence (scale 0.0-1.0)
-   - Consider historical context and transmission pathways
-   - Assess alternative explanations for similarities
+4. Technical Vocabulary:
+   - Shared philosophical terms
+   - Similar technical language
+   - Common specialized concepts
+   - Related terminological usage
 
-Provide specific evidence for each category and explain your confidence score.
-Format your analysis as structured JSON with these exact fields:
-"verbal_parallels", "conceptual_parallels", "methodological_similarities", 
-"influence_score", "evidence", "confidence_explanation"
-        </pre>
-      </td>
-    </tr>
-  </table>
-</div>
-
-### Output Example: Detailed Comparison Analysis
-
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <pre>
+Analyze these texts and respond in this exact JSON format:
 {
-  "verbal_parallels": [
-    {
-      "concept": "Mimesis/Takhyīl",
-      "text_a": "Aristotle defines poetry fundamentally as mimesis (μίμησις), 
-                the imitation or representation of reality through artistic means",
-      "text_b": "Al-Farabi establishes takhyīl (تخييل) as the central concept, 
-                defining it as imaginative representation that creates images 
-                in the mind of the listener",
-      "analysis": "Both texts center their poetic theories on representational 
-                  concepts, with Aristotle's mimesis and Al-Farabi's takhyīl 
-                  serving analogous functions despite subtle differences in scope"
-    },
-    {
-      "concept": "Poetic Forms Classification",
-      "text_a": "Aristotle systematically categorizes poetry into tragedy, comedy, 
-                and epic poetry, defining each by its means, objects, and manner 
-                of imitation",
-      "text_b": "Al-Farabi presents a classification system that acknowledges Greek 
-                categories while incorporating Arabic forms like madīḥ (praise), 
-                hijāʾ (satire), and rithāʾ (elegy)",
-      "analysis": "Both authors employ taxonomic approaches to poetic forms, 
-                  though Al-Farabi adapts the classification to accommodate 
-                  Arabic literary traditions"
-    },
-    {
-      "concept": "Technical Terminology",
-      "text_a": "Aristotle employs specialized vocabulary including μῦθος (plot), 
-                λέξις (diction), and κάθαρσις (catharsis)",
-      "text_b": "Al-Farabi uses corresponding technical terms including ḥikāya 
-                (narrative), lafẓ (verbal expression), and taṭhīr (purification)",
-      "analysis": "The technical vocabulary shows clear correspondences that 
-                  suggest deliberate translation or adaptation of Aristotelian 
-                  terminology into Arabic philosophical language"
-    }
-  ],
-  
-  "conceptual_parallels": [
-    {
-      "concept": "Poetry as Logical Discourse",
-      "text_a": "Aristotle integrates poetry into his broader philosophical system, 
-                treating it as a form of knowledge with its own logical structure",
-      "text_b": "Al-Farabi explicitly develops the concept of 'poetic syllogism' 
-                (qiyās shiʿrī), positioning poetry within his logical framework 
-                derived from Aristotle's Organon",
-      "analysis": "Al-Farabi extends Aristotle's approach by more explicitly 
-                  connecting poetics to formal logic, developing what was implicit 
-                  in Aristotle into a systematic theory of poetic reasoning"
-    },
-    {
-      "concept": "Psychological Effect of Poetry",
-      "text_a": "Aristotle's theory of catharsis describes how tragedy produces 
-                emotional purification through the arousal and resolution of 
-                pity and fear",
-      "text_b": "Al-Farabi analyzes how poetic discourse affects the soul through 
-                imagination, creating emotional responses that can lead to 
-                ethical improvement",
-      "analysis": "Both philosophers are concerned with poetry's psychological 
-                  impact, though Al-Farabi adapts the concept to fit within 
-                  Islamic philosophical psychology"
-    },
-    {
-      "concept": "Unity and Structure",
-      "text_a": "Aristotle emphasizes the importance of unity, completeness, and 
-                magnitude in tragic plots, arguing that a well-constructed plot 
-                should have a beginning, middle, and end",
-      "text_b": "Al-Farabi discusses structural principles for poetic composition, 
-                emphasizing coherence and proportionality in relation to the 
-                intended effect",
-      "analysis": "Both texts present normative theories of poetic structure, 
-                  though Al-Farabi's approach is more explicitly connected to 
-                  the logical structure of arguments"
-    }
-  ],
-  
-  "methodological_similarities": [
-    {
-      "approach": "Analytical Framework",
-      "similarity": "Both texts approach poetry as a subject for philosophical 
-                    analysis rather than purely aesthetic appreciation, 
-                    integrating poetics into broader philosophical systems",
-      "significance": "Indicates shared intellectual methodology characteristic 
-                      of Peripatetic tradition, suggesting Al-Farabi's conscious 
-                      positioning within this philosophical lineage"
-    },
-    {
-      "approach": "Comparative Analysis",
-      "similarity": "Al-Farabi adopts Aristotle's comparative approach but extends 
-                    it to include Arabic poetic traditions, explicitly comparing 
-                    Greek and Arabic metrical systems and poetic forms",
-      "significance": "Shows adaptation of Aristotelian methodology to new cultural 
-                      context while maintaining the fundamental analytical approach"
-    },
-    {
-      "approach": "Definition and Division",
-      "similarity": "Both authors begin with general definitions of poetry and 
-                    proceed by division into types and analysis of components, 
-                    following the classical method of definition by genus and 
-                    specific difference",
-      "significance": "Demonstrates Al-Farabi's adoption of Aristotelian logical 
-                      methods in structuring his treatise"
-    }
-  ],
-  
-  "influence_score": 0.85,
-  
-  "evidence": [
-    "Terminological correspondences between key concepts (mimesis/takhyīl, 
-     catharsis/taṭhīr)",
-    "Structural similarities in analytical approach and organization",
-    "Adaptation of Aristotelian concepts to Arabic poetic tradition",
-    "Integration with broader Peripatetic philosophical framework",
-    "Historical evidence of transmission through Syriac translations",
-    "Al-Farabi's explicit references to 'the author of the book on poetry'",
-    "Consistent pattern of creative adaptation rather than mere imitation"
-  ],
-  
-  "confidence_explanation": "The high confidence score (0.85) is based on multiple 
-  lines of evidence including terminological, conceptual, methodological, and 
-  historical factors. The pattern of similarities shows systematic engagement 
-  with Aristotle's text, while the adaptations and extensions demonstrate 
-  Al-Farabi's creative interpretation rather than coincidental similarity. 
-  Historical evidence confirms that Al-Farabi had access to Aristotle's Poetics 
-  through the translation tradition, and his other works show similar patterns 
-  of engagement with Aristotelian texts. The score is not higher (e.g., 0.95) 
-  because some similarities could be attributed to shared philosophical tradition 
-  rather than direct textual influence, and because Al-Farabi introduces 
-  significant innovations not found in Aristotle."
+    "verbal_parallels": ["parallel1", "parallel2", ...],
+    "conceptual_parallels": ["parallel1", "parallel2", ...],
+    "methodological_parallels": ["parallel1", "parallel2", ...],
+    "technical_vocabulary": ["term1", "term2", ...],
+    "analysis_summary": "A detailed summary of the relationship between these texts",
+    "confidence_score": 0.0-1.0,
+    "recommended_research": ["suggestion1", "suggestion2", ...]
 }
         </pre>
       </td>
@@ -600,76 +511,67 @@ Format your analysis as structured JSON with these exact fields:
   </table>
 </div>
 
-### Confidence Score Calculation
-
-The Source Analyzer calculates confidence scores based on a weighted combination of factors:
+### Output Example: Comparison Analysis
 
 <div align="center">
   <table>
     <tr>
-      <th>Factor</th>
-      <th>Weight</th>
-      <th>Description</th>
-    </tr>
-    <tr>
-      <td>Verbal Parallels</td>
-      <td>30%</td>
-      <td>Similarity in terminology, phrasing, and examples</td>
-    </tr>
-    <tr>
-      <td>Conceptual Parallels</td>
-      <td>35%</td>
-      <td>Similarity in ideas, arguments, and frameworks</td>
-    </tr>
-    <tr>
-      <td>Methodological Similarities</td>
-      <td>20%</td>
-      <td>Similarity in approach, structure, and reasoning</td>
-    </tr>
-    <tr>
-      <td>Historical Context</td>
-      <td>15%</td>
-      <td>Known transmission pathways and historical evidence</td>
-    </tr>
-  </table>
-</div>
+      <td>
+        <pre>
+{
+  "comparisons": [
+    {
+      "input_file": "farabi.txt",
+      "database_file": "ap.txt",
+      "relevance_score": 0.9,
+      "common_themes": [
+        "poetic theory",
+        "classification of literary forms",
+        "linguistic analysis",
+        "systematic analysis of poetry",
+        "literary criticism",
+        "genre classification",
+        "compositional structure"
+      ],
+      "rationale": "These texts show a clear source relationship, with Al-Farabi's treatise directly building upon Aristotle's Poetics. Both works employ systematic classification of poetic forms and linguistic analysis. Al-Farabi explicitly adapts Aristotelian poetic theory for an Arabic context while maintaining core theoretical frameworks. The strong textual relationship is evident in their shared methodological approach to analyzing poetic discourse, though Al-Farabi expands the comparative scope to include non-Greek traditions. The transmission of Aristotelian poetic theory through Arabic philosophical tradition is well-documented, and this pair of texts represents a classic example of that philosophical lineage.",
+      "analysis": {
+        "verbal_parallels": [
+          "Both texts discuss mimesis/imitation (محاكاة in Arabic, μίμησις in Greek)",
+          "Shared terminology around tragedy (τραγῳδία/طراغوذيا) and comedy (κωμῳδία/قوموذيا)",
+          "Discussion of poetic meters and rhythm (وزن/μέτρον)",
+          "Treatment of diction and language (لفظ/λέξις)"
+        ],
+        "conceptual_parallels": [
+          "Classification of different types of poetry",
+          "Theory of poetic imitation and representation",
+          "Discussion of plot structure and composition",
+          "Analysis of character types and moral qualities",
+          "Treatment of probability and necessity in poetry"
+        ],
+        "methodological_parallels": [
+          "Systematic classification of poetic forms",
+          "Analysis moving from general principles to specific examples",
+          "Use of technical terminology and definitions",
+          "Comparative analysis between different poetic genres"
+        ],
+        "technical_vocabulary": [
+          "mimesis/محاكاة/μίμησις",
+          "tragedy/طراغوذيا/τραγῳδία",
+          "comedy/قوموذيا/κωμῳδία",
+          "diction/لفظ/λέξις",
+          "plot/مثل/μῦθος"
+        ],
+        "analysis_summary": "Al-Farabi's text shows clear influence from Aristotle's Poetics, adapting Greek poetic theory for an Arabic context. While maintaining core Aristotelian concepts like mimesis and the classification of poetic genres, Al-Farabi develops these ideas within Islamic literary traditions. The parallel structure and shared technical vocabulary demonstrate direct transmission of Aristotelian poetics through Arabic philosophical tradition.",
+        "confidence_score": 0.9,
+        "recommended_research": [
+          "Examine Arabic translations and commentaries of Aristotle's Poetics",
+          "Compare Al-Farabi's other works on poetry and rhetoric",
+          "Study the transformation of Greek poetic terms in Arabic tradition",
+          "Investigate the role of Syriac intermediaries in transmission"
+        ]
+      }
+    },
 
-### Results Visualization
-
-The Source Analyzer generates visualizations to help scholars understand the relationships between texts:
-
-<div align="center">
-  <table>
-    <tr>
-      <th colspan="3">Influence Confidence Matrix</th>
-    </tr>
-    <tr>
-      <th>Source Text</th>
-      <th>Target Text</th>
-      <th>Confidence Score</th>
-    </tr>
-    <tr>
-      <td>Aristotle: Poetics</td>
-      <td>Al-Farabi: Risālah fī qawānīn ṣināʿat al-šuʿarāʾ</td>
-      <td><strong>0.85</strong></td>
-    </tr>
-    <tr>
-      <td>Aristotle: Analytica Posteriora</td>
-      <td>Al-Farabi: Risālah fī qawānīn ṣināʿat al-šuʿarāʾ</td>
-      <td><strong>0.40</strong></td>
-    </tr>
-    <tr>
-      <td>Plato: Republic (Books II-III)</td>
-      <td>Al-Farabi: Risālah fī qawānīn ṣināʿat al-šuʿarāʾ</td>
-      <td><strong>0.25</strong></td>
-    </tr>
-    <tr>
-      <td>Arabic Poetic Tradition</td>
-      <td>Al-Farabi: Risālah fī qawānīn ṣināʿat al-šuʿarāʾ</td>
-      <td><strong>0.70</strong></td>
-    </tr>
-  </table>
-</div>
 
 ### Key Features
 
@@ -767,23 +669,27 @@ The Deep Analyzer is implemented as a Python module that:
    - Saves results with timestamps
    - Maintains symlinks to latest results
 
-### AI Prompt Example
+### API Prompt Example
 
 Here's an example of the prompt used for transmission pattern analysis:
 
-```
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <pre>
 Analyze the textual evidence for transmission and influence between these texts:
 
 Text 1:
-Author: [Author]
-Title: [Title]
-Type: [Text Type]
+Author: {input_metadata.get('author', 'Unknown')}
+Title: {input_metadata.get('title', 'Unknown')}
+Type: {input_metadata.get('text_type', 'Unknown')}
 
 Text 2:
-Database Text: [Database File]
+Database Text: {comparison['database_file']}
 
 Existing Analysis:
-[Previous Analysis JSON]
+{json.dumps(comparison['analysis'], indent=2)}
 
 Please analyze the concrete textual evidence for:
 1. Direct textual dependencies:
@@ -819,7 +725,11 @@ Respond in JSON format with these fields:
 - adaptation_evidence: List of documented modifications and adjustments
 - evidence_strength: 0.0-1.0 score for the strength of textual evidence
 - key_passages: List of specific passages that demonstrate the relationships
-```
+        </pre>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ### Output Example
 
@@ -919,9 +829,9 @@ The Deep Analyzer provides:
     <td align="center" width="33%">
       <h4>🔄 Methodological Innovation</h4>
       <ul>
-        <li>Combine traditional and computational methods</li>
-        <li>Quantitative + qualitative insights</li>
-        <li>Reproducible processes</li>
+        <li>Bridge computational linguistics with traditional philology</li>
+        <li>Combine quantitative + qualitative insights</li>
+        <li>Reduce confirmation bias in source identification</li>
       </ul>
     </td>
     <td align="center" width="33%">
@@ -929,7 +839,7 @@ The Deep Analyzer provides:
       <ul>
         <li>Map influence networks</li>
         <li>Test transmission hypotheses</li>
-        <li>Macro-level tradition analysis</li>
+        <li>Analyze philosophical idea evolution</li>
       </ul>
     </td>
   </tr>
@@ -1008,7 +918,7 @@ The Deep Analyzer provides:
 <a id="conclusion"></a>
 ## 🏆 Conclusion
 
-The Source Analysis System represents a significant step forward in computational approaches to philosophical text analysis. By combining the strengths of AI with traditional scholarly methods, it offers new possibilities for understanding the complex relationships between texts across time, language, and tradition.
+The Source Analysis Recommender represents a significant step forward in computational approaches to philosophical text analysis. By combining the strengths of AI with traditional scholarly methods, it offers new possibilities for understanding the complex relationships between texts across time, language, and tradition.
 
 This project demonstrates the potential of thoughtful AI integration in humanities research—not replacing human scholars, but augmenting their capabilities and opening new avenues for discovery.
 
@@ -1018,12 +928,12 @@ This project demonstrates the potential of thoughtful AI integration in humaniti
   <h2>Thank You</h2>
   <p>For more information about this project, please contact:</p>
   <div style="padding: 20px; margin-top: 10px;">
-    <p><strong>[Your Name]</strong><br>
-    [Your Institution]<br>
-    [Your Email]</p>
+    <p><strong>Cameron Pattison</strong><br>
+    [Vanderbilt University]<br>
+    [cameron.pattison@vanderbilt.edu]</p>
   </div>
   
   <p style="margin-top: 30px; font-size: 0.8em; color: #666;">
-    © 2023 Source Analysis System Project • All Rights Reserved
+    © 2025 Source Analysis Recommender Project • All Rights Reserved
   </p>
 </div> 
