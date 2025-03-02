@@ -684,423 +684,222 @@ The Source Analyzer generates visualizations to help scholars understand the rel
 <a id="stage3"></a>
 ## 🔬 Stage 3: Deep Analyzer
 
-<div align="center">
-  <img src="pictures/comparison_analysis.jpg" alt="Deep Analysis Visualization" width="500"/>
-  <p><em>Visualization of conceptual transformations between philosophical traditions</em></p>
-</div>
-
 ### Purpose
 
-The Deep Analyzer performs in-depth analysis of high-confidence matches identified by the Source Analyzer. It focuses on text pairs with high confidence scores (≥0.7) and provides detailed evidence-based assessment of influence patterns, transmission pathways, and conceptual transformations.
+The Deep Analyzer performs in-depth analysis of high-confidence matches identified by the Source Analyzer. It focuses on text pairs with high confidence scores (≥0.7) and provides detailed evidence-based assessment of influence patterns.
 
 ### Input Example
 
-The Deep Analyzer takes three inputs:
+The Deep Analyzer takes as input the results from the Source Analyzer:
 
-1. **Text A (Potential Source)**: Full text of Aristotle's "Poetics"
-```
-περὶ ποιητικῆς αὐτῆς τε καὶ τῶν εἰδῶν αὐτῆς, ἥν τινα δύναμιν ἕκαστον ἔχει, καὶ πῶς 
-δεῖ συνίστασθαι τοὺς μύθους εἰ μέλλει καλῶς ἕξειν ἡ ποίησις, ἔτι δὲ ἐκ πόσων καὶ 
-ποίων ἐστὶ μορίων, ὁμοίως δὲ καὶ περὶ τῶν ἄλλων ὅσα τῆς αὐτῆς ἐστι μεθόδου, λέγωμεν 
-ἀρξάμενοι κατὰ φύσιν πρῶτον ἀπὸ τῶν πρώτων.
-
-ἐποποιία δὴ καὶ ἡ τῆς τραγῳδίας ποίησις ἔτι δὲ κωμῳδία καὶ ἡ διθυραμβοποιητικὴ καὶ 
-τῆς αὐλητικῆς ἡ πλείστη καὶ κιθαριστικῆς πᾶσαι τυγχάνουσιν οὖσαι μιμήσεις τὸ σύνολον...
-```
-
-2. **Text B (Text Under Analysis)**: Full text of Al-Farabi's "Risālah fī qawānīn ṣināʿat al-šuʿarāʾ"
-```
-وأما الشعر فإنه كلام مخيل مؤلف من أقوال لها إيقاعات متساوية، وهذه الأقوال 
-متساوية الأجزاء عند العرب متفقة الأواخر، وعند اليونانيين متساوية في الأزمنة 
-متفقة الأوزان، وكل قول منها عند العرب يسمى بيتا، وعند اليونانيين يسمى الواحد 
-منها فاصلة، وعند كثير من الأمم يسمى الواحد منها سطرا...
-```
-
-3. **Previous Analysis**: Source Analyzer results for this text pair
 ```json
 {
-  "verbal_parallels": [
+  "comparisons": [
     {
-      "concept": "Mimesis/Takhyīl",
-      "text_a": "Aristotle defines poetry fundamentally as mimesis (μίμησις)...",
-      "text_b": "Al-Farabi establishes takhyīl (تخييل) as the central concept...",
-      "analysis": "Both texts center their poetic theories on representational concepts..."
-    },
-    // Additional verbal parallels...
-  ],
-  "conceptual_parallels": [
-    // Conceptual parallels from Source Analyzer...
-  ],
-  "methodological_similarities": [
-    // Methodological similarities from Source Analyzer...
-  ],
-  "influence_score": 0.85,
-  "evidence": [
-    // Evidence points from Source Analyzer...
-  ],
-  "confidence_explanation": "The high confidence score (0.85) is based on multiple lines of evidence..."
+      "input_file": "aristotle_poetics.txt",
+      "database_file": "alfarabi_poetics.txt",
+      "relevance_score": 0.85,
+      "analysis": {
+        "verbal_parallels": ["..."],
+        "conceptual_parallels": ["..."],
+        "methodological_parallels": ["..."],
+        "technical_vocabulary": ["..."],
+        "analysis_summary": "...",
+        "confidence_score": 0.85,
+        "recommended_research": ["..."]
+      }
+    }
+  ]
 }
 ```
 
-### Process Workflow
+### Process
 
-The Deep Analyzer follows a systematic workflow to provide comprehensive analysis:
+The Deep Analyzer follows these steps:
 
-<div align="center">
-  <table>
-    <tr>
-      <th>Phase</th>
-      <th>Actions</th>
-      <th>Outputs</th>
-    </tr>
-    <tr>
-      <td>1. Preparation</td>
-      <td>
-        • Load full texts and previous analysis<br>
-        • Identify key passages for detailed comparison<br>
-        • Extract relevant historical context
-      </td>
-      <td>Aligned passage pairs for analysis</td>
-    </tr>
-    <tr>
-      <td>2. Transmission Analysis</td>
-      <td>
-        • Analyze textual dependencies<br>
-        • Map conceptual relationships<br>
-        • Reconstruct transmission pathways
-      </td>
-      <td>Transmission pathway diagram</td>
-    </tr>
-    <tr>
-      <td>3. Conceptual Analysis</td>
-      <td>
-        • Compare philosophical frameworks<br>
-        • Identify conceptual transformations<br>
-        • Analyze cultural adaptations
-      </td>
-      <td>Concept transformation matrix</td>
-    </tr>
-    <tr>
-      <td>4. Linguistic Analysis</td>
-      <td>
-        • Map terminology correspondences<br>
-        • Analyze translation patterns<br>
-        • Compare argumentative structures
-      </td>
-      <td>Terminology correspondence table</td>
-    </tr>
-    <tr>
-      <td>5. Synthesis</td>
-      <td>
-        • Integrate findings from all analyses<br>
-        • Generate comprehensive report<br>
-        • Provide scholarly citations
-      </td>
-      <td>Comprehensive analysis report</td>
-    </tr>
-  </table>
-</div>
+1. **Load Previous Analysis**
+   - Retrieves results from the Source Analyzer
+   - Filters for high-confidence comparisons (≥0.7)
+
+2. **Analyze Transmission Patterns**
+   - Examines direct textual dependencies
+   - Identifies conceptual dependencies
+   - Looks for evidence of mediation
+   - Identifies adaptation indicators
+
+3. **Analyze Philosophical Development**
+   - Examines argument structure
+   - Analyzes conceptual frameworks
+   - Evaluates methodological approaches
+   - Identifies philosophical innovations
+
+4. **Analyze Linguistic Transformation**
+   - Examines technical terminology
+   - Analyzes argumentative language
+   - Evaluates conceptual expression
+   - Identifies textual organization patterns
+
+5. **Generate Comprehensive Report**
+   - Combines all analyses
+   - Calculates aggregate confidence scores
+   - Provides detailed evidence for each finding
 
 ### Technical Implementation
 
 The Deep Analyzer is implemented as a Python module that:
 
-1. **Processes Full Texts**
-   - Handles original language texts (Ancient Greek, Classical Arabic, etc.)
-   - Aligns passages based on thematic and conceptual similarities
-   - Extracts key passages for detailed comparison
-
-2. **Applies Specialized AI Analysis**
-   - Uses Claude 3.5 Sonnet with specialized prompts for deep philosophical analysis
-   - Implements multi-step reasoning for complex influence assessment
-   - Applies historical and cultural context to interpretation
-
-3. **Generates Comprehensive Reports**
-   - Creates detailed analysis reports with specific textual evidence
-   - Produces visualizations of conceptual transformations
-   - Provides scholarly citations and references
-
-### AI Prompt Used
-
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <pre>
-You are a specialist in philosophical transmission analysis with expertise in cross-cultural 
-philosophical influence between Ancient Greek and Classical Arabic traditions. Your task is 
-to perform an in-depth analysis of the relationship between two texts that have been identified 
-as having a high probability of influence.
-
-TEXT A (Potential Source):
-{{text_a_full}}
-
-TEXT B (Text Under Analysis):
-{{text_b_full}}
-
-PREVIOUS ANALYSIS:
-{{source_analyzer_results}}
-
-HISTORICAL CONTEXT:
-{{historical_context}}
-
-Please provide a detailed analysis of:
-
-1. Transmission patterns:
-   - Identify specific passages showing direct textual dependencies
-   - Map conceptual dependencies between the texts
-   - Reconstruct possible transmission pathways considering historical factors
-   - Assess the role of intermediate translations or commentaries
-
-2. Philosophical development:
-   - Analyze how specific concepts from Text A are developed or transformed in Text B
-   - Identify innovations or adaptations in Text B not present in Text A
-   - Explain cultural or contextual factors affecting the transformation
-   - Assess the philosophical significance of these transformations
-
-3. Linguistic transformation:
-   - Create a detailed mapping of technical terminology correspondences
-   - Analyze translation or adaptation patterns across languages
-   - Compare argumentative structures and rhetorical strategies
-   - Identify language-specific features affecting conceptual expression
-
-For each observation, provide:
-   - Specific textual evidence with original language quotations
-   - Scholarly context including relevant secondary literature
-   - Confidence assessment for each claim
-   - Alternative interpretations where appropriate
-
-Format your analysis as a comprehensive scholarly report with clearly defined sections.
-        </pre>
-      </td>
-    </tr>
-  </table>
-</div>
-
-### Output Example: Comprehensive Analysis Report
-
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <pre>
-# Deep Analysis Report: Al-Farabi's Poetics and Aristotle's Poetics
-
-## Executive Summary
-
-This analysis confirms a high probability (0.85) of direct influence from Aristotle's 
-Poetics on Al-Farabi's "Risālah fī qawānīn ṣināʿat al-šuʿarāʾ." The influence manifests 
-through systematic terminological correspondences, conceptual adaptations, and methodological 
-similarities. Al-Farabi's work represents a creative adaptation rather than mere translation, 
-integrating Aristotelian poetics into Islamic philosophical discourse while accommodating 
-Arabic literary traditions.
-
-## 1. Transmission Patterns
-
-### 1.1 Direct Textual Dependencies
-
-Seven passages show strong evidence of direct textual dependency:
-
-| Aristotle's Poetics | Al-Farabi's Risālah | Analysis |
-|---------------------|---------------------|----------|
-| "ἐποποιία δὴ καὶ ἡ τῆς τραγῳδίας ποίησις ἔτι δὲ κωμῳδία καὶ ἡ διθυραμβοποιητικὴ καὶ τῆς αὐλητικῆς ἡ πλείστη καὶ κιθαριστικῆς πᾶσαι τυγχάνουσιν οὖσαι μιμήσεις τὸ σύνολον" (1447a13-15) | "فأما الشعر اليوناني فإنه ينقسم إلى المديح والهجاء والتراجيديا والكوميديا والديثرمبية وغير ذلك، وكلها تشترك في كونها محاكاة" | Al-Farabi follows Aristotle's classification system while adapting it to include Arabic forms. The structural parallel is unmistakable, though Al-Farabi adds "madīḥ" (praise) and "hijāʾ" (satire) to accommodate Arabic tradition. |
-| "ἐπεὶ δὲ μιμοῦνται οἱ μιμούμενοι πράττοντας, ἀνάγκη δὲ τούτους ἢ σπουδαίους ἢ φαύλους εἶναι" (1448a1-2) | "والمحاكاة إما أن تكون لأفعال الفضلاء أو لأفعال الأشرار" | Direct correspondence in the ethical classification of mimetic subjects as either virtuous or base. The parallel extends to the logical structure of the division. |
-
-Five additional passages show similar dependencies (confidence: high).
-
-### 1.2 Conceptual Dependencies
-
-The analysis identifies three primary conceptual dependencies:
-
-1. **Mimesis Framework**: Al-Farabi adopts Aristotle's foundational concept of mimesis but transforms it into "takhyīl" (imaginative representation), expanding its scope to include psychological effects.
-
-2. **Logical Structure**: Al-Farabi integrates poetics into the logical framework derived from Aristotle's Organon, developing the concept of "poetic syllogism" (qiyās shiʿrī).
-
-3. **Cathartic Function**: Al-Farabi adapts Aristotle's theory of catharsis to align with Islamic philosophical psychology, emphasizing ethical improvement through imaginative experience.
-
-### 1.3 Transmission Pathway
-
-Historical evidence supports the following transmission pathway:
-
-1. Aristotle's Poetics (4th century BCE, Greek)
-2. Syriac translation by Abu Bishr Matta ibn Yunus (9th century CE)
-3. Arabic commentaries in Baghdad Peripatetic circle
-4. Al-Farabi's direct access to these translations and commentaries
-
-Evidence includes:
-- Al-Farabi's references to "the author of the book on poetry" (صاحب كتاب الشعر)
-- Terminological consistency with established translation conventions
-- Historical documentation of Al-Farabi's association with Abu Bishr Matta
-- References to intermediate commentaries by Themistius and Alexander of Aphrodisias
-
-## 2. Philosophical Development
-
-### 2.1 Conceptual Transformations
-
-| Aristotelian Concept | Al-Farabi's Transformation | Significance |
-|----------------------|----------------------------|--------------|
-| Mimesis (μίμησις) as imitation of actions | Takhyīl (تخييل) as imaginative representation in the soul | Shifts focus from objective representation to psychological effect |
-| Catharsis (κάθαρσις) as emotional purification | Taṭhīr (تطهير) integrated with ethical improvement | Aligns with Islamic ethical philosophy |
-| Poetry as separate from logic | "Poetic syllogism" (قياس شعري) as part of logical system | Integrates poetics into comprehensive logical framework |
-
-### 2.2 Innovations in Al-Farabi
-
-1. **Comparative Poetics**: Al-Farabi systematically compares Greek and Arabic poetic traditions, analyzing differences in metrical systems and poetic forms.
-
-2. **Psychological Theory**: Develops a sophisticated theory of how poetic discourse affects the soul through imagination, extending beyond Aristotle's more limited discussion.
-
-3. **Integration with Islamic Philosophy**: Situates poetics within the broader Islamic philosophical system, connecting it to theories of knowledge, ethics, and politics.
-
-### 2.3 Cultural Adaptation Factors
-
-The transformation of Aristotelian concepts in Al-Farabi's work is shaped by:
-
-1. **Islamic Intellectual Context**: Adaptation to monotheistic theological framework
-2. **Arabic Literary Tradition**: Accommodation of established Arabic poetic forms and criticism
-3. **Translation Movement Context**: Part of broader project to integrate Greek philosophy into Islamic thought
-4. **Political Context**: Alignment with Al-Farabi's political philosophy and concept of the virtuous city
-
-## 3. Linguistic Transformation
-
-### 3.1 Terminology Correspondences
-
-| Greek Term | Arabic Equivalent | Semantic Shift |
-|------------|-------------------|----------------|
-| μίμησις (mimesis) | تخييل (takhyīl) | From "imitation" to "causing imagination" |
-| κάθαρσις (catharsis) | تطهير (taṭhīr) | Similar meaning but with ethical dimension |
-| μῦθος (mythos) | حكاية (ḥikāya) | From "plot" to "narrative" |
-| λέξις (lexis) | لفظ (lafẓ) | From "diction" to "verbal expression" |
-| διάνοια (dianoia) | فكر (fikr) | From "thought" to "intellectual content" |
-| μέλος (melos) | لحن (laḥn) | From "melody" to "musical mode" |
-| ὄψις (opsis) | منظر (manẓar) | From "spectacle" to "visual aspect" |
-
-### 3.2 Translation Patterns
-
-Analysis reveals three primary translation strategies:
-
-1. **Conceptual Adaptation**: 65% of terms show conceptual rather than literal translation
-2. **Terminological Innovation**: 25% of terms represent new technical vocabulary
-3. **Direct Calque**: 10% of terms show direct word-for-word translation
-
-### 3.3 Argumentative Structure
-
-Al-Farabi preserves Aristotle's analytical approach while adapting to Arabic rhetorical conventions:
-
-1. Maintains definition-division-analysis structure
-2. Incorporates Islamic scholarly citation practices
-3. Adapts Greek syllogistic reasoning to Arabic logical forms
-4. Integrates comparative elements not present in Aristotle
-
-## 4. Scholarly Significance
-
-This analysis confirms that Al-Farabi's engagement with Aristotle's Poetics represents:
-
-1. A crucial link in the transmission of Greek poetic theory to the Islamic world
-2. A creative adaptation rather than mere translation or commentary
-3. An integration of poetics into a comprehensive philosophical system
-4. A foundation for subsequent developments in Arabic literary theory
-
-The evidence strongly supports the classification of Al-Farabi's work as a creative adaptation of Aristotle's Poetics, transformed through the lens of Islamic philosophy and Arabic literary tradition.
-
-## 5. References
-
-1. Black, D. (1990). Logic and Aristotle's Rhetoric and Poetics in Medieval Arabic Philosophy. Brill.
-2. Butterworth, C. (1987). "Al-Farabi's Introductory Sections on Logic." Arabic Sciences and Philosophy, 7(1), 93-124.
-3. Dahiyat, I. (1974). Avicenna's Commentary on the Poetics of Aristotle. Brill.
-4. Kemal, S. (1991). The Poetics of Alfarabi and Avicenna. Brill.
-5. Walzer, R. (1985). Al-Farabi on the Perfect State. Oxford University Press.
-        </pre>
-      </td>
-    </tr>
-  </table>
-</div>
-
-### Key Features and Visualizations
-
-#### Concept Transformation Map
-
-<div align="center">
-  <table>
-    <tr>
-      <th colspan="3">Conceptual Transformation from Aristotle to Al-Farabi</th>
-    </tr>
-    <tr>
-      <th width="30%">Greek Concept</th>
-      <th width="40%">Transformation Process</th>
-      <th width="30%">Arabic Adaptation</th>
-    </tr>
-    <tr>
-      <td>μίμησις<br>(mimesis)</td>
-      <td>→ Translation + Psychological extension + Integration with logic</td>
-      <td>تخييل<br>(takhyīl)</td>
-    </tr>
-    <tr>
-      <td>κάθαρσις<br>(catharsis)</td>
-      <td>→ Translation + Ethical reframing + Integration with soul theory</td>
-      <td>تطهير<br>(taṭhīr)</td>
-    </tr>
-    <tr>
-      <td>τραγῳδία<br>(tragedy)</td>
-      <td>→ Translation + Cultural adaptation + Genre modification</td>
-      <td>تراجيديا<br>(trājīdiyā)</td>
-    </tr>
-    <tr>
-      <td>μέτρον<br>(meter)</td>
-      <td>→ Translation + Technical adaptation to Arabic prosody</td>
-      <td>وزن<br>(wazn)</td>
-    </tr>
-  </table>
-</div>
-
-#### Transmission Pathway Visualization
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <strong>Aristotle's Poetics</strong><br>
-        (Greek, 4th century BCE)
-      </td>
-    </tr>
-    <tr>
-      <td align="center">↓<br><em>Translation</em></td>
-    </tr>
-    <tr>
-      <td align="center">
-        <strong>Syriac Translation</strong><br>
-        (Abu Bishr Matta, 9th century CE)
-      </td>
-    </tr>
-    <tr>
-      <td align="center">↓<br><em>Translation + Commentary</em></td>
-    </tr>
-    <tr>
-      <td align="center">
-        <strong>Baghdad Peripatetic Circle</strong><br>
-        (9th-10th centuries CE)
-      </td>
-    </tr>
-    <tr>
-      <td align="center">↓<br><em>Philosophical Adaptation</em></td>
-    </tr>
-    <tr>
-      <td align="center">
-        <strong>Al-Farabi's Poetics</strong><br>
-        (Arabic, 10th century CE)
-      </td>
-    </tr>
-  </table>
-</div>
-
-### Scholarly Applications
-
-The Deep Analyzer provides scholars with:
+1. **Loads Source Analyzer Results**
+   - Retrieves the latest analysis results
+   - Filters for high-confidence matches (≥0.7)
+
+2. **Makes API Calls to OpenAI**
+   - Uses the o3-mini model
+   - Implements retry logic for reliability
+   - Processes structured JSON responses
+
+3. **Performs Three Types of Analysis**
+   - Transmission pattern analysis
+   - Philosophical development analysis
+   - Linguistic transformation analysis
+
+4. **Generates Detailed Reports**
+   - Creates comprehensive analysis reports
+   - Saves results with timestamps
+   - Maintains symlinks to latest results
+
+### AI Prompt Example
+
+Here's an example of the prompt used for transmission pattern analysis:
+
+```
+Analyze the textual evidence for transmission and influence between these texts:
+
+Text 1:
+Author: [Author]
+Title: [Title]
+Type: [Text Type]
+
+Text 2:
+Database Text: [Database File]
+
+Existing Analysis:
+[Previous Analysis JSON]
+
+Please analyze the concrete textual evidence for:
+1. Direct textual dependencies:
+   - Exact quotations or close paraphrases
+   - Shared examples or illustrations
+   - Similar structural organization
+   - Common reference points
+
+2. Conceptual dependencies:
+   - Shared philosophical frameworks
+   - Similar problem-solving approaches
+   - Common argumentative patterns
+   - Parallel theoretical constructs
+
+3. Evidence of mediation:
+   - References to other texts or authorities
+   - Use of standard terminology or definitions
+   - Common sources cited or alluded to
+   - Shared technical vocabulary
+
+4. Adaptation indicators:
+   - Modifications of concepts or arguments
+   - Contextual adjustments
+   - Elaborations or simplifications
+   - Novel applications of ideas
+
+Focus only on evidence present in the texts themselves. Avoid speculating about historical transmission paths unless explicitly referenced in the texts.
+
+Respond in JSON format with these fields:
+- textual_dependencies: List of concrete textual parallels and dependencies
+- conceptual_dependencies: List of shared philosophical frameworks and approaches
+- mediation_evidence: List of references and shared sources found in the texts
+- adaptation_evidence: List of documented modifications and adjustments
+- evidence_strength: 0.0-1.0 score for the strength of textual evidence
+- key_passages: List of specific passages that demonstrate the relationships
+```
+
+### Output Example
+
+The Deep Analyzer generates a structured report with detailed findings:
+
+```
+DEEP ANALYSIS REPORT
+====================
+
+Analysis Date: 2023-10-15 14:30:22
+Total Pairs Analyzed: 3
+Successful Analyses: 3
+Failed Analyses: 0
+
+ANALYSIS 1
+---------------
+Input Text: aristotle_poetics.txt
+Database Text: alfarabi_poetics.txt
+Original Confidence: 0.850
+Aggregate Evidence Strength: 0.823
+
+Textual Dependencies and Transmission:
+--------------------------------
+Direct Textual Dependencies:
+  • [Example textual dependency]
+  • [Example textual dependency]
+
+Conceptual Dependencies:
+  • [Example conceptual dependency]
+  • [Example conceptual dependency]
+
+Key Supporting Passages:
+  • [Example key passage]
+  • [Example key passage]
+
+Philosophical Analysis:
+---------------------
+Argument Structure:
+  • [Example argument structure]
+  • [Example argument structure]
+
+Key Philosophical Concepts:
+  • [Example philosophical concept]
+  • [Example philosophical concept]
+
+Methodological Approaches:
+  • [Example methodological approach]
+  • [Example methodological approach]
+
+Key Arguments:
+  • [Example key argument]
+  • [Example key argument]
+
+Linguistic Analysis:
+------------------
+Technical Terminology:
+  • [Example technical term]
+  • [Example technical term]
+
+Argumentative Patterns:
+  • [Example argumentative pattern]
+  • [Example argumentative pattern]
+
+Conceptual Expression:
+  • [Example conceptual expression]
+  • [Example conceptual expression]
+
+Specific Examples:
+  • [Specific example]
+  • [Specific example]
+```
+
+### Key Features
+
+The Deep Analyzer provides:
 
 1. **Evidence-Based Assessment**: Detailed textual evidence for influence claims
-2. **Conceptual Mapping**: Visualization of how concepts transform across traditions
-3. **Transmission Reconstruction**: Evidence-based reconstruction of transmission pathways
-4. **Cultural Contextualization**: Analysis of how cultural factors shape philosophical adaptation
-5. **Interdisciplinary Integration**: Combines philological, philosophical, and historical approaches
+2. **Multi-Dimensional Analysis**: Examines textual, philosophical, and linguistic dimensions
+3. **Confidence Scoring**: Quantifies the strength of evidence for each analysis dimension
+4. **Structured Reporting**: Organizes findings into clear categories with specific examples
 
 ---
 
