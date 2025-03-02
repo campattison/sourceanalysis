@@ -204,7 +204,8 @@ The Thematizer follows these steps:
 ```
 You are a Classical scholar specializing in ancient Greek and Arabic philosophy.
 
-Based on the following analysis results, determine if these texts are likely to have a meaningful source relationship.
+Based on the following analysis results, determine if these texts are likely to have 
+a meaningful source relationship.
 
 Text 1:
 Author: {context['input_author']}
