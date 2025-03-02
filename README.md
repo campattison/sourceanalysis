@@ -573,36 +573,6 @@ The Deep Analyzer takes as input the results from the Source Analyzer:
 }
 ```
 
-### Process
-
-The Deep Analyzer follows these steps:
-
-1. **Load Previous Analysis**
-   - Retrieves results from the Source Analyzer
-   - Filters for high-confidence comparisons (≥0.7)
-
-2. **Analyze Transmission Patterns**
-   - Examines direct textual dependencies
-   - Identifies conceptual dependencies
-   - Looks for evidence of mediation
-   - Identifies adaptation indicators
-
-3. **Analyze Philosophical Development**
-   - Examines argument structure
-   - Analyzes conceptual frameworks
-   - Evaluates methodological approaches
-   - Identifies philosophical innovations
-
-4. **Analyze Linguistic Transformation**
-   - Examines technical terminology
-   - Analyzes argumentative language
-   - Evaluates conceptual expression
-   - Identifies textual organization patterns
-
-5. **Generate Comprehensive Report**
-   - Combines all analyses
-   - Calculates aggregate confidence scores
-   - Provides detailed evidence for each finding
 
 ### Technical Implementation
 
@@ -696,60 +666,74 @@ Failed Analyses: 0
 
 ANALYSIS 1
 ---------------
-Input Text: aristotle_poetics.txt
-Database Text: alfarabi_poetics.txt
-Original Confidence: 0.850
-Aggregate Evidence Strength: 0.823
+Input Text: farabi.txt
+Database Text: ap.txt
+Original Confidence: 0.900
+Aggregate Evidence Strength: 0.850
 
 Textual Dependencies and Transmission:
 --------------------------------
 Direct Textual Dependencies:
-  • [Example textual dependency]
-  • [Example textual dependency]
+  • Both texts include nearly identical technical terms such as mimesis/imitation (Arabic: محاكاة, Greek: μίμησις) and use them in definitions that match closely.
+  • There is strong evidence in both texts for a parallel discussion of dramatic genres, as shown by the use of terms for tragedy (Arabic: طراغوذيا, Greek: τραγωδία) and comedy (Arabic: قواموذيا, Greek: κωμῳδία).
+  • Both texts systematically enumerate elements of poetic construction—addressing poetic meters and rhythm (Arabic: وزن, Greek: μέτρον) as well as diction (Arabic: لفض, Greek: λέξις) and plot (Arabic: مثل, Greek: μῦθος)—demonstrating close paraphrasing and organization.
+  • The structural organization in both texts follows a similar progression from general theoretical principles to specific illustrative examples.
 
 Conceptual Dependencies:
-  • [Example conceptual dependency]
-  • [Example conceptual dependency]
+  • Both texts operate within a shared philosophical framework that classifies different types of poetry and examines the nature of imitation (mimesis) as a central principle.
+  • The texts share a methodological approach that begins with broad definitions and theoretical constructs before applying them to analyze specific aspects of poetry.
+  • Each text makes use of comparative analysis between poetic genres (tragedy versus comedy) and dissects components such as plot structure and character types within the same theoretical models.
+  • Common argumentative patterns appear in their handling of probability, necessity, and the moral underpinnings of literary expression.
 
 Key Supporting Passages:
-  • [Example key passage]
-  • [Example key passage]
+  • The section where both texts define mimesis/imitation explicitly—Arabic: 'محاكاة' is defined in a manner nearly identical to the Greek 'μίμησις'.
+  • Passages devoted to the classification of dramatic genres, where both languages provide parallel definitions and examples for tragedy and comedy.
+  • The analysis of poetic rhythm and meter which juxtaposes the Arabic 'وزن' with the Greek 'μέτρον', showcasing a direct correspondence in technical detail.
+  • Excerpts on the discussion of diction and plot structure that reveal congruent methodological approaches and identical use of technical vocabulary.
 
 Philosophical Analysis:
 ---------------------
 Argument Structure:
-  • [Example argument structure]
-  • [Example argument structure]
+  • Both texts construct their arguments by first establishing general principles (such as the concept of mimesis/imitative art) and then applying these principles to specific categories (like tragedy versus comedy).
+  • The Greek text reveals a framework based on rigorous syllogistic and deductive reasoning, emphasizing logical relationships among defined terms, while the Arabic text follows a similar pattern but modifies certain argumentative steps to fit its own cultural and literary contexts.
+  • Each text utilizes precise technical vocabulary (for example, in defining poetic metrics, diction, and plot structure) to build their arguments, demonstrating a methodological consistency in using specialized terminology as a basis for subsequent analysis.
 
 Key Philosophical Concepts:
-  • [Example philosophical concept]
-  • [Example philosophical concept]
+  • Both texts share key philosophical concepts such as mimesis (imitation), the classification of poetic forms, and the analysis of tragedy and comedy, each using analogous terminology in Arabic and Greek.
+  • The Greek text lays out a categorical system that dissects poetic art into its constituent elements, while the Arabic text extends these categories by integrating additional considerations (for instance, moral qualities and probability in narrative outcomes) that reflect its specific intellectual milieu.
+  • While both texts adhere to an ontological framework that distinguishes various forms of artistic representation, the Arabic text innovatively reframes these categories to resonate with Islamic literary and philosophical traditions.
 
 Methodological Approaches:
-  • [Example methodological approach]
-  • [Example methodological approach]
+  • Both texts demonstrate a systematic analytical technique in which broad definitions and principles are apportioned into more specific subcategories, an approach that reflects a shared methodological focus on comparative classification.
+  • The investigative method employed in both works involves detailed analysis using technical terms and clear examples to illustrate how different poetic genres function, revealing an underlying commitment to precise definition and empirical illustration.
+  • Dialectical patterns are observed in the way each text contrasts genres—such as tragedy versus comedy—and uses structured demonstrations to reconcile differences and similarities among these categories.
 
 Key Arguments:
-  • [Example key argument]
-  • [Example key argument]
+  • The argument establishing mimesis as a universal principle in poetic theory is consistently articulated in both texts, demonstrating a shared belief in the function of imitation as a creative act.
+  • Both texts articulate detailed classifications of poetic genres, particularly in their treatment of tragedy and comedy, using parallel technical vocabulary that underscores their common analytical heritage.
+  • The Greek text's structured approach to defining poetic elements (using syllogistic and deductive reasoning) is mirrored and extended by the Arabic text, where the core principles are maintained but are innovatively adapted to include additional literary and moral dimensions.
 
 Linguistic Analysis:
 ------------------
 Technical Terminology:
-  • [Example technical term]
-  • [Example technical term]
+  • Both texts (or at least the available portion of Text 2 and the inferred content of Text 1) display a methodical listing of technical terminology. For example, the term 'mimesis' is presented alongside its Arabic (مُحاكاة) and Greek (μίμησις) equivalents, demonstrating a clear cross-linguistic mapping of concepts.
+  • Similarly, the terms 'tragedy,' 'comedy,' 'diction,' and 'plot' are each given in three linguistic forms. This indicates that both texts use standardized technical vocabulary from literary theory and philosophy, and that these terms are understood as carrying a specialized meaning in each language.
 
 Argumentative Patterns:
-  • [Example argumentative pattern]
-  • [Example argumentative pattern]
+  • Although neither text presents a fully elaborated argument in the excerpt provided, the manner of juxtaposing equivalent terms implies an underlying dialectical strategy.
+  • The consistent listing with clear separators (slashes) between the linguistic forms (for instance, 'mimesis/مُحاكاة/μίμησις') works as a demonstrative device that argues for the equivalence of these concepts across cultures and languages.
+  • Such systematic pairing may function as an inferential marker by suggesting that if one understands the Greek technical term, then one can also comprehend its Arabic and English (or classical) counterparts.
 
 Conceptual Expression:
-  • [Example conceptual expression]
-  • [Example conceptual expression]
+  • The texts express abstract philosophical concepts using technical terms that are common to literary and aesthetic theory. Terms like 'mimesis' and 'plot' signal deep theoretical ideas about art imitation and narrative structure.
+  • By aligning terms such as 'tragedy' and 'comedy' with their equivalents in different languages, the texts show a definitional approach that binds these abstract categories with specific, culturally informed vocabularies.
+  • The act of listing these high-level concepts side by side serves as an explanatory pattern: it illuminates the shared conceptual ground between different philosophical traditions.
 
 Specific Examples:
-  • [Specific example]
-  • [Specific example]
+  • Example of shared technical terminology: 'mimesis/مُحاكاة/μίμησις' directly aligns a concept across English, Arabic, and Greek.
+  • Example of argumentative implication: The consistent slash-delimited format (as in 'tragedy/طراغوذيا/τραγῳδία') functions as an inferential marker that what is true for one term is true for its translation, thereby arguing for conceptual equivalence.
+  • Example of conceptual expression: Presenting 'plot' as 'plot/مثَل/μύθος' encapsulates a complex narrative idea in a simple tripartite form, underlining its philosophical and literary importance.
+  • Example of organizational pattern: The list format in Text 2 organizes terms systematically, which not only aids in comparison but also suggests a deliberate effort to structure the text into clearly defined lexical-technical sections.
 ```
 
 ### Key Features
