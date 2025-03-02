@@ -6,7 +6,7 @@
   
   <h2>Computational Approaches to Philosophical Text Analysis</h2>
   
-  <p><em>Bridging ancient wisdom and modern AI</em></p>
+  <p><em>LLM API APPROACH</em></p>
   
   <p>
     <a href="#overview">Overview</a> •
@@ -22,7 +22,7 @@
   <br>
   
   <p><em>Arabic manuscript from Bodleian Library (MS. Arab.d.84)</em></p>
-</div>
+</div> 
 
 ---
 
@@ -42,6 +42,8 @@
 <br>
 
 The Source Analysis Recommender is a sophisticated computational pipeline designed to identify and analyze potential source relationships between classical philosophical texts. This system bridges computational linguistics with traditional philological methods to provide evidence-based insights into the transmission of philosophical ideas across linguistic and cultural boundaries, assisting scholars in discovering overlooked textual connections and influences.
+
+This API approach is one of two approaches we're currently working on. The other is a vector store approach that leverages ModernBERT to conduct quantitative research on text similarities between input and database files. 
 
 ---
 <a id="what"></a>
@@ -740,9 +742,9 @@ Specific Examples:
 
 The Deep Analyzer provides:
 
-1. **Evidence-Based Assessment**: Detailed textual evidence for influence claims
+1. **Readable Assessment**: Detailed and readable assements of parallels found in the databse
 2. **Multi-Dimensional Analysis**: Examines textual, philosophical, and linguistic dimensions
-3. **Confidence Scoring**: Quantifies the strength of evidence for each analysis dimension
+3. **Promising Leads and Context**: Gives scholars a starting point for digging deeper into their literature
 4. **Structured Reporting**: Organizes findings into clear categories with specific examples
 
 ---
@@ -789,16 +791,13 @@ The Deep Analyzer provides:
     <td align="center" width="33%">
       <h3>⚠️ AI Limitations</h3>
       <ul>
-        <li>Occasional hallucinations</li>
-        <li>Variable performance by language/period</li>
         <li>Requires expert validation</li>
       </ul>
     </td>
     <td align="center" width="33%">
       <h3>📊 Data Challenges</h3>
       <ul>
-        <li>Input text quality dependency</li>
-        <li>Limited digitized ancient texts</li>
+        <li>Limited digitized medieval texts</li>
         <li>Textual variants and translations</li>
       </ul>
     </td>
@@ -806,8 +805,7 @@ The Deep Analyzer provides:
       <h3>🔍 Methodological Considerations</h3>
       <ul>
         <li>Efficiency vs. depth balance</li>
-        <li>AI-assisted scholarship transparency</li>
-        <li>Integration with existing practices</li>
+        <li>API cost balancing</li>
       </ul>
     </td>
   </tr>
