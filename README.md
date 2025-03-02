@@ -172,7 +172,7 @@ The Thematizer performs initial broad analysis of individual texts to identify t
       </td>
     </tr>
     <tr>
-      <td align="center"><em>Classical Arabic text from Al-Farabi's "Risālah fī qawānīn ṣināʿat al-šuʿarāʾ"</em></td>
+      <td align="center"><em>Classical Arabic text from Al-Farabi's "Risālah fī qawānīn ṣināʿat al-šuʿarāʾ "</em></td>
     </tr>
   </table>
 </div>
