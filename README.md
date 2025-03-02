@@ -489,7 +489,7 @@ Analyze these texts and respond in this exact JSON format:
       "analysis": {
         "verbal_parallels": [
           "Both texts discuss mimesis/imitation (محاكاة in Arabic, μίμησις in Greek)",
-          "Shared terminology around tragedy (τραγῳδία/طراغوذيا) and comedy (κωμῳدία/قوموذيا)",
+          "Shared terminology around tragedy (τραγῳδία/طراغوذيا) and comedy (κωμῳδία/قوموذيا)",
           "Discussion of poetic meters and rhythm (وزن/μέτρον)",
           "Treatment of diction and language (لفظ/λέξις)"
         ],
@@ -509,7 +509,7 @@ Analyze these texts and respond in this exact JSON format:
         "technical_vocabulary": [
           "mimesis/محاكاة/μίμησις",
           "tragedy/طراغوذيا/τραγῳδία",
-          "comedy/قوموذيا/κωμῳدία",
+          "comedy/قوموذيا/κωμῳδία",
           "diction/لفظ/λέξις",
           "plot/مثل/μῦθος"
         ],
@@ -522,8 +522,14 @@ Analyze these texts and respond in this exact JSON format:
           "Investigate the role of Syriac intermediaries in transmission"
         ]
       }
-    },
-
+    }
+  ]
+}
+        </pre>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ### Key Features
 
