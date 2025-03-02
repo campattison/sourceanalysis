@@ -199,90 +199,69 @@ The Thematizer follows these steps:
    - Generates comprehensive thematic profiles
 
 ### API Prompt Used
-
-#### Initial Sorting of Texts
-
-```
-You are a Classical scholar specializing in ancient Greek and Arabic philosophy.
-
-Based on the following analysis results, determine if these texts are likely to have 
-a meaningful source relationship.
-
-Text 1:
-Author: {context['input_author']}
-Title: {context['input_title']}
-Type: {context['input_type']}
-Themes: {', '.join(input_analysis.get('themes', []))}
-Abstract: {input_analysis.get('abstract', 'No abstract available')}
-
-Text 2:
-Author: {context['db_author']}
-Title: {context['db_title']}
-Type: {context['db_type']}
-Themes: {', '.join(db_analysis.get('themes', []))}
-Abstract: {db_analysis.get('abstract', 'No abstract available')}
-
-Respond in this exact JSON format:
-{
-    "is_relevant": true/false,
-    "relevance_score": 0.0-1.0,
-    "common_themes": ["theme1", "theme2", ...],
-    "rationale": "Brief explanation of why these texts are or aren't relevant"
-}
-```
-
-#### Source Analysis
-
 ```
 You are a Classical scholar specializing in ancient Greek and Arabic philosophy. 
-You are analyzing two texts for potential source relationships.
+You are analyzing an academic philosophical text that could be:
+1. An ancient Greek philosophical work (like Aristotle's originals)
+2. An Arabic philosophical text (like Al-Farabi's originals)
+3. A commentary or interpretation of philosophical works (like Al-Farabi's 
+commentaries)
+4. Part of the established philosophical canon
 
-Text 1 Context:
-Author: {context['input_author']}
-Title: {context['input_title']}
-Type: {context['input_type']}
+Your task is to perform careful scholarly analysis of this text. Pay special attention to:
+- References to authors or titles in the text
+- Writing style and terminology that might indicate the text type
+- Technical philosophical terms and concepts
+- Section breaks or chapter divisions
+- The relationship to Aristotelian thought
 
-Text 2 Context:
-Author: {context['db_author']}
-Title: {context['db_title']}
-Type: {context['db_type']}
+Please analyze the following chunk ({chunk_number} of {total_chunks}) and extract:
 
-Please analyze these texts for:
+1. Author identification:
+   - Look for explicit mentions of the author
+   - Carefully consider writing style and historical context
+   - Note if it's attributed to a specific philosophical school
 
-1. Verbal Parallels:
-   - Direct quotations
-   - Close paraphrases
-   - Shared terminology
-   - Similar phrasing
+2. Title identification:
+   - Look for explicit title mentions
+   - Consider standard names of philosophical works
+   - Note if it's part of a larger work
 
-2. Conceptual Parallels:
-   - Shared philosophical ideas
-   - Similar arguments
-   - Related examples
-   - Common themes
+3. Text type classification:
+   - "original text" (e.g., Aristotle's works)
+   - "commentary" (direct commentary on another work)
+   - "treatise" (independent philosophical work)
+   - "unknown" (if unclear)
 
-3. Methodological Parallels:
-   - Similar analytical approaches
-   - Shared argumentative structures
-   - Common organizational patterns
-   - Related scholarly methods
+4. Themes and concepts:
+   - Major philosophical themes
+   - Technical terminology
+   - Key arguments and concepts
+   - Philosophical methodology
 
-4. Technical Vocabulary:
-   - Shared philosophical terms
-   - Similar technical language
-   - Common specialized concepts
-   - Related terminological usage
+5. Abstract focusing on:
+   - Main philosophical arguments
+   - Relationship to other philosophical works
+   - Historical and intellectual context
+   - Significance of the ideas presented
 
-Analyze these texts and respond in this exact JSON format:
-{
-    "verbal_parallels": ["parallel1", "parallel2", ...],
-    "conceptual_parallels": ["parallel1", "parallel2", ...],
-    "methodological_parallels": ["parallel1", "parallel2", ...],
-    "technical_vocabulary": ["term1", "term2", ...],
-    "analysis_summary": "A detailed summary of the relationship between these texts",
-    "confidence_score": 0.0-1.0,
-    "recommended_research": ["suggestion1", "suggestion2", ...]
-}
+6. Structural elements:
+   - Chapter or section divisions
+   - Natural topic transitions
+   - Argument structure breaks
+   - Reference points in the text
+
+
+You MUST respond in valid JSON format with these exact fields:
+{{
+    "author": "Author's name or 'Unknown' if not found in this chunk",
+    "title": "Title of the work or 'Unknown' if not found in this chunk",
+    "text_type": "original text|commentary|treatise|unknown",
+    "themes": ["theme1", "theme2", ...],
+    "abstract": "A scholarly abstract of this chunk of text.",
+    "natural_breaks": ["Break 1", "Break 2", ...] or [] if none found
+}}
+
 ```
 
 ### Output Example
