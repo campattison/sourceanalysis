@@ -284,7 +284,6 @@ Analyze these texts and respond in this exact JSON format:
 ```
 
 ### Output Example
-
 <div align="center">
   <table>
     <tr>
