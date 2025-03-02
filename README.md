@@ -197,226 +197,11 @@ The Thematizer follows these steps:
 
 ### API Prompt Used
 
-```
-You are a Classical scholar specializing in ancient Greek and Arabic philosophy. 
-You are analyzing an academic philosophical text that could be:
-1. An ancient Greek philosophical work (like Aristotle's originals)
-2. An Arabic philosophical text (like Al-Farabi's originals)
-3. A commentary or interpretation of philosophical works (like Al-Farabi's commentaries)
-4. Part of the established philosophical canon
-
-Your task is to perform careful scholarly analysis of this text. Pay special attention to:
-- References to authors or titles in the text
-- Writing style and terminology that might indicate the text type
-- Technical philosophical terms and concepts
-- Section breaks or chapter divisions
-- The relationship to Aristotelian thought
-
-Please analyze the following chunk and extract:
-
-1. Author identification:
-   - Look for explicit mentions of the author
-   - Carefully consider writing style and historical context
-   - Note if it's attributed to a specific philosophical school
-
-2. Title identification:
-   - Look for explicit title mentions
-   - Consider standard names of philosophical works
-   - Note if it's part of a larger work
-
-3. Text type classification:
-   - "original text" (e.g., Aristotle's works)
-   - "commentary" (direct commentary on another work)
-   - "treatise" (independent philosophical work)
-   - "unknown" (if unclear)
-
-4. Themes and concepts:
-   - Major philosophical themes
-   - Technical terminology
-   - Key arguments and concepts
-   - Philosophical methodology
-
-5. Abstract focusing on:
-   - Main philosophical arguments
-   - Relationship to other philosophical works
-   - Historical and intellectual context
-   - Significance of the ideas presented
-
-6. Structural elements:
-   - Chapter or section divisions
-   - Natural topic transitions
-   - Argument structure breaks
-   - Reference points in the text
-
-You MUST respond in valid JSON format with these exact fields:
-{
-    "author": "Author's name or 'Unknown' if not found in this chunk",
-    "title": "Title of the work or 'Unknown' if not found in this chunk",
-    "text_type": "original text|commentary|treatise|unknown",
-    "themes": ["theme1", "theme2", ...],
-    "abstract": "A scholarly abstract of this chunk of text.",
-    "natural_breaks": ["Break 1", "Break 2", ...] or [] if none found
-}
-```
-
-### Output Example
-
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <pre>
-{
-  "author": "Aristotle",
-  "title": "Poetics",
-  "text_type": "original text",
-  "themes": [
-    "Classification of poetic forms",
-    "Comparison of poetry and history",
-    "Dramatic structure",
-    "Literary criticism",
-    "Nature of tragedy",
-    "Poetic composition",
-    "Theory of mimesis",
-    "Unity of plot",
-    "Character development",
-    "Dramatic poetry vs epic poetry",
-    "Dramatic unity",
-    "Epic poetry",
-    "Length and composition",
-    "Linguistic analysis",
-    "Linguistic elements",
-    "Literary theory",
-    "Metaphor theory",
-    "Mimesis",
-    "Pleasure in poetry",
-    "Plot construction",
-    "Recognition (anagnorisis)",
-    "Reversal (peripeteia)",
-    "Tragedy",
-    "Tragedy and epic comparison",
-    "Tragedy theory",
-    "Unity of action"
-  ],
-  "abstract": "This is the opening section of Aristotle's Poetics, his foundational treatise on literary theory and dramatic criticism. The text begins with a systematic analysis of different forms of artistic imitation (mimesis), particularly focusing on poetry, tragedy, comedy, and epic poetry. \n\n  Aristotle establishes his key theoretical framework by differentiating various arts according to their means, objects, and manner of imitation. He then provides a detailed analysis of tragedy's essential elements, including plot, character, thought, diction, melody, and spectacle. \n\n  The text is particularly significant for its formal definition of tragedy and its emphasis on plot (mythos) as the most important element of tragic composition. The work represents the first systematic treatment of literary theory in Western thought. \n\n  This section of Aristotle's Poetics focuses on the technical aspects of tragic drama, particularly analyzing plot structure, character recognition (anagnorisis), and dramatic revers..."
-}
-        </pre>
-      </td>
-    </tr>
-  </table>
-</div>
-
-### Key Features
-
-- **Multilingual Analysis**: Processes texts in Ancient Greek, Classical Arabic, and other languages
-- **Intelligent Chunking**: Handles texts of any length by splitting into manageable chunks while preserving context
-- **Structured Output**: Generates standardized JSON data for consistent downstream processing
-- **Error Handling**: Implements robust retry logic and error recovery mechanisms
-- **Comprehensive Logging**: Maintains detailed logs for transparency and debugging
-
----
-
-<a id="stage2"></a>
-## 🔍 Stage 2: Source Analyzer
-
-### Purpose
-
-The Source Analyzer compares texts to identify potential relationships and influences between them. It takes the thematic profiles generated by the Thematizer and performs pairwise comparisons to detect verbal parallels, conceptual similarities, and methodological connections via API calls to Claude 3.7.
-
-### Process Workflow
-
-The Source Analyzer follows a systematic workflow to compare texts and assess potential influence:
-
-<div align="center">
-  <table>
-    <tr>
-      <th>Step</th>
-      <th>Action</th>
-      <th>Purpose</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Load thematic profiles</td>
-      <td>Retrieve structured data from Thematizer outputs</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Identify shared themes</td>
-      <td>Detect overlapping philosophical concepts</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Extract key passages</td>
-      <td>Locate specific textual evidence for comparison</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Analyze verbal parallels</td>
-      <td>Compare terminology, phrasing, and examples</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Analyze conceptual parallels</td>
-      <td>Compare ideas, arguments, and frameworks</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Analyze methodological similarities</td>
-      <td>Compare approaches, structures, and reasoning patterns</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Calculate confidence score</td>
-      <td>Quantify likelihood of influence (0.0-1.0)</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Generate evidence summary</td>
-      <td>Provide detailed justification for assessment</td>
-    </tr>
-  </table>
-</div>
-
-### Technical Implementation
-
-The Source Analyzer is implemented as a Python module that:
-
-1. **Loads and Processes Thematic Data**
-   - Reads JSON outputs from the Thematizer
-   - Validates data structure and required fields
-   - Identifies potential text pairs for comparison based on thematic overlap
-
-2. **Performs Multi-Stage Analysis**
-   - Loads relevant text pairs
-   - Conducts in-depth analysis using Claude 3.5 Sonnet API
-   - Outputs structured examination of verbal, conceptual, and methodological parallels
-
-3. **Generates Comprehensive Results**
-   - Creates standardized JSON output with detailed evidence
-   - Estimates confidence scores
-   - Produces human-readable summaries with scholarly recommendations
-
-### API Prompts Used
-
 #### Initial Sorting of Texts
 
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <pre>
-context = {
-    "input_file": input_file,
-    "db_file": db_file,
-    "input_author": input_analysis["author"],
-    "input_title": input_analysis["title"],
-    "input_type": input_analysis["text_type"],
-    "db_author": db_analysis["author"],
-    "db_title": db_analysis["title"],
-    "db_type": db_analysis["text_type"]
-}
+```
+You are a Classical scholar specializing in ancient Greek and Arabic philosophy.
 
-prompt = f"""You are a Classical scholar specializing in ancient Greek and Arabic philosophy.
 Based on the following analysis results, determine if these texts are likely to have a meaningful source relationship.
 
 Text 1:
@@ -434,25 +219,17 @@ Themes: {', '.join(db_analysis.get('themes', []))}
 Abstract: {db_analysis.get('abstract', 'No abstract available')}
 
 Respond in this exact JSON format:
-{{
+{
     "is_relevant": true/false,
     "relevance_score": 0.0-1.0,
     "common_themes": ["theme1", "theme2", ...],
     "rationale": "Brief explanation of why these texts are or aren't relevant"
-}}"""
-        </pre>
-      </td>
-    </tr>
-  </table>
-</div>
+}
+```
 
 #### Source Analysis
 
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <pre>
+```
 You are a Classical scholar specializing in ancient Greek and Arabic philosophy. 
 You are analyzing two texts for potential source relationships.
 
@@ -502,11 +279,189 @@ Analyze these texts and respond in this exact JSON format:
     "confidence_score": 0.0-1.0,
     "recommended_research": ["suggestion1", "suggestion2", ...]
 }
+```
+
+### Output Example
+
+<div align="center">
+  <table>
+    <tr>
+      <td>
+        <pre>
+{
+  "author": "Aristotle",
+  "title": "Poetics",
+  "text_type": "original text",
+  "themes": [
+    "Classification of poetic forms",
+    "Comparison of poetry and history",
+    "Dramatic structure",
+    "Literary criticism",
+    "Nature of tragedy",
+    "Poetic composition",
+    "Theory of mimesis",
+    "Unity of plot",
+    "Character development",
+    "Dramatic poetry vs epic poetry",
+    "Dramatic unity",
+    "Epic poetry",
+    "Length and composition",
+    "Linguistic analysis",
+    "Linguistic elements",
+    "Literary theory",
+    "Metaphor theory",
+    "Mimesis",
+    "Pleasure in poetry",
+    "Plot construction",
+    "Recognition (anagnorisis)",
+    "Reversal (peripeteia)",
+    "Tragedy",
+    "Tragedy and epic comparison",
+    "Tragedy theory",
+    "Unity of action"
+  ],
+  "abstract": "This is the opening section of Aristotle's Poetics, his foundational 
+  treatise on literary theory and dramatic criticism. The text begins with a 
+  systematic analysis of different forms of artistic imitation (mimesis), 
+  particularly focusing on poetry, tragedy, comedy, and epic poetry. \n\n  Aristotle 
+  establishes his key theoretical framework by differentiating various arts according
+  to their means, objects, and manner of imitation. He then provides a detailed 
+  analysis of tragedy's essential elements, including plot, character, thought, 
+  diction, melody, and spectacle. \n\n  The text is particularly significant for its
+  formal definition of tragedy and its emphasis on plot (mythos) as the most 
+  important element of tragic composition. The work represents the first systematic 
+  treatment of literary theory in Western thought. \n\n  This section of 
+  Aristotle's Poetics focuses on the technical aspects of tragic drama, 
+  particularly analyzing plot structure, character recognition (anagnorisis), and 
+  dramatic revers..."
+}
         </pre>
       </td>
     </tr>
   </table>
 </div>
+
+### Key Features
+
+- **Multilingual Analysis**: Processes texts in Ancient Greek, Classical Arabic, and other languages
+- **Intelligent Chunking**: Handles texts of any length by splitting into manageable chunks while preserving context
+- **Structured Output**: Generates standardized JSON data for consistent downstream processing
+- **Error Handling**: Implements robust retry logic and error recovery mechanisms
+- **Comprehensive Logging**: Maintains detailed logs for transparency and debugging
+
+---
+
+<a id="stage2"></a>
+## 🔍 Stage 2: Source Analyzer
+
+### Purpose
+
+The Source Analyzer compares texts to identify potential relationships and influences between them. It takes the thematic profiles generated by the Thematizer and performs pairwise comparisons to detect verbal parallels, conceptual similarities, and methodological connections via API calls to Claude 3.7.
+
+
+### Technical Implementation
+
+The Source Analyzer is implemented as a Python module that:
+
+1. **Loads and Processes Thematic Data**
+   - Reads JSON outputs from the Thematizer
+   - Identifies potential text pairs for comparison based on thematic overlap
+
+2. **Performs Multi-Stage Analysis**
+   - Loads relevant text pairs
+   - Conducts in-depth analysis using Claude 3.5 Sonnet API
+   - Outputs structured examination of verbal, conceptual, and methodological parallels
+
+3. **Generates Comprehensive Results**
+   - Creates standardized JSON output with detailed evidence
+   - Estimates confidence scores
+   - Produces human-readable summaries with scholarly recommendations
+
+### API Prompts Used
+
+#### Initial Sorting of Texts
+
+```
+You are a Classical scholar specializing in ancient Greek and Arabic philosophy.
+
+Based on the following analysis results, determine if these texts are likely to have a meaningful source relationship.
+
+Text 1:
+Author: {context['input_author']}
+Title: {context['input_title']}
+Type: {context['input_type']}
+Themes: {', '.join(input_analysis.get('themes', []))}
+Abstract: {input_analysis.get('abstract', 'No abstract available')}
+
+Text 2:
+Author: {context['db_author']}
+Title: {context['db_title']}
+Type: {context['db_type']}
+Themes: {', '.join(db_analysis.get('themes', []))}
+Abstract: {db_analysis.get('abstract', 'No abstract available')}
+
+Respond in this exact JSON format:
+{
+    "is_relevant": true/false,
+    "relevance_score": 0.0-1.0,
+    "common_themes": ["theme1", "theme2", ...],
+    "rationale": "Brief explanation of why these texts are or aren't relevant"
+}
+```
+
+#### Source Analysis
+
+```
+You are a Classical scholar specializing in ancient Greek and Arabic philosophy. 
+You are analyzing two texts for potential source relationships.
+
+Text 1 Context:
+Author: {context['input_author']}
+Title: {context['input_title']}
+Type: {context['input_type']}
+
+Text 2 Context:
+Author: {context['db_author']}
+Title: {context['db_title']}
+Type: {context['db_type']}
+
+Please analyze these texts for:
+
+1. Verbal Parallels:
+   - Direct quotations
+   - Close paraphrases
+   - Shared terminology
+   - Similar phrasing
+
+2. Conceptual Parallels:
+   - Shared philosophical ideas
+   - Similar arguments
+   - Related examples
+   - Common themes
+
+3. Methodological Parallels:
+   - Similar analytical approaches
+   - Shared argumentative structures
+   - Common organizational patterns
+   - Related scholarly methods
+
+4. Technical Vocabulary:
+   - Shared philosophical terms
+   - Similar technical language
+   - Common specialized concepts
+   - Related terminological usage
+
+Analyze these texts and respond in this exact JSON format:
+{
+    "verbal_parallels": ["parallel1", "parallel2", ...],
+    "conceptual_parallels": ["parallel1", "parallel2", ...],
+    "methodological_parallels": ["parallel1", "parallel2", ...],
+    "technical_vocabulary": ["term1", "term2", ...],
+    "analysis_summary": "A detailed summary of the relationship between these texts",
+    "confidence_score": 0.0-1.0,
+    "recommended_research": ["suggestion1", "suggestion2", ...]
+}
+```
 
 ### Output Example: Comparison Analysis
 
@@ -534,7 +489,7 @@ Analyze these texts and respond in this exact JSON format:
       "analysis": {
         "verbal_parallels": [
           "Both texts discuss mimesis/imitation (محاكاة in Arabic, μίμησις in Greek)",
-          "Shared terminology around tragedy (τραγῳδία/طراغوذيا) and comedy (κωμῳδία/قوموذيا)",
+          "Shared terminology around tragedy (τραγῳδία/طراغوذيا) and comedy (κωμῳدία/قوموذيا)",
           "Discussion of poetic meters and rhythm (وزن/μέτρον)",
           "Treatment of diction and language (لفظ/λέξις)"
         ],
@@ -554,7 +509,7 @@ Analyze these texts and respond in this exact JSON format:
         "technical_vocabulary": [
           "mimesis/محاكاة/μίμησις",
           "tragedy/طراغوذيا/τραγῳδία",
-          "comedy/قوموذيا/κωμῳδία",
+          "comedy/قوموذيا/κωμῳدία",
           "diction/لفظ/λέξις",
           "plot/مثل/μῦθος"
         ],
@@ -668,13 +623,7 @@ The Deep Analyzer is implemented as a Python module that:
 
 ### API Prompt Example
 
-Here's an example of the prompt used for transmission pattern analysis:
-
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <pre>
+```
 Analyze the textual evidence for transmission and influence between these texts:
 
 Text 1:
@@ -716,17 +665,15 @@ Please analyze the concrete textual evidence for:
 Focus only on evidence present in the texts themselves. Avoid speculating about historical transmission paths unless explicitly referenced in the texts.
 
 Respond in JSON format with these fields:
-- textual_dependencies: List of concrete textual parallels and dependencies
-- conceptual_dependencies: List of shared philosophical frameworks and approaches
-- mediation_evidence: List of references and shared sources found in the texts
-- adaptation_evidence: List of documented modifications and adjustments
-- evidence_strength: 0.0-1.0 score for the strength of textual evidence
-- key_passages: List of specific passages that demonstrate the relationships
-        </pre>
-      </td>
-    </tr>
-  </table>
-</div>
+{
+    "textual_dependencies": ["dependency1", "dependency2", ...],
+    "conceptual_dependencies": ["dependency1", "dependency2", ...],
+    "mediation_evidence": ["evidence1", "evidence2", ...],
+    "adaptation_evidence": ["evidence1", "evidence2", ...],
+    "evidence_strength": 0.0-1.0,
+    "key_passages": ["passage1", "passage2", ...]
+}
+```
 
 ### Output Example
 
