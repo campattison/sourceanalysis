@@ -139,12 +139,17 @@ The Thematizer performs initial broad analysis of individual texts to identify t
     <tr>
       <td>
         <pre>
-      Περι ποιητικῆς αὐτῆς τε καὶ τῶν εἰδῶν αὐτῆς, ἥν τινα δύναμιν ἕκαστον ἔχει, καὶ πῶς δεῖ συνίστασθαι τοὺς μύθους, εἰ μέλλει καλῶς ἕξειν ἡ ποίησις, ἔτι δὲ ἐκ πόσων καὶ ποίων ἐστὶ μορίων, ὁμοίως δὲ καὶ περὶ τῶν ἄλλων ὅσα τῆς αὐτῆς ἐστὶ μεθόδου, λέγωμεν, ἀρξάμενοι κατὰ φύσιν πρῶτον ἀπὸ τῶν πρώτων. Ἐποποιία δὴ καὶ ἡ τῆς τραγῳδίας ποίησις, ἔτι δὲ κωμῳδία καὶ ἡ διθυραμβοποιητικὴ καὶ τῆς αὐλητικῆς ἡ πλείστη καὶ κιθαριστικῆς, πᾶσαι τυγχάνουσιν οὖσαι μιμήσεις τὸ σύνολον.  
-       </pre>
+Περι ποιητικῆς αὐτῆς τε καὶ τῶν εἰδῶν αὐτῆς, ἥν τινα δύναμιν ἕκαστον ἔχει, καὶ πῶς 
+δεῖ συνίστασθαι τοὺς μύθους, εἰ μέλλει καλῶς ἕξειν ἡ ποίησις, ἔτι δὲ ἐκ πόσων καὶ 
+ποίων ἐστὶ μορίων, ὁμοίως δὲ καὶ περὶ τῶν ἄλλων ὅσα τῆς αὐτῆς ἐστὶ μεθόδου, λέγωμεν, 
+ἀρξάμενοι κατὰ φύσιν πρῶτον ἀπὸ τῶν πρώτων. Ἐποποιία δὴ καὶ ἡ τῆς τραγῳδίας ποίησις, 
+ἔτι δὲ κωμῳδία καὶ ἡ διθυραμβοποιητικὴ καὶ τῆς αὐλητικῆς ἡ πλείστη καὶ κιθαριστικῆς, 
+πᾶσαι τυγχάνουσιν οὖσαι μιμήσεις τὸ σύνολον.
+        </pre>
       </td>
     </tr>
     <tr>
-      <td align="center"><em>"Classical Greek text from Aristotle's "Ars Poetica Περὶ ποιητικῆς Kitāb fī l-šiʿr" </em></td>
+      <td align="center"><em>Classical Greek text from Aristotle's "Ars Poetica Περὶ ποιητικῆς Kitāb fī l-šiʿr"</em></td>
     </tr>
   </table>
 </div>
@@ -192,11 +197,7 @@ The Thematizer follows these steps:
 
 ### API Prompt Used
 
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <pre>
+```
 You are a Classical scholar specializing in ancient Greek and Arabic philosophy. 
 You are analyzing an academic philosophical text that could be:
 1. An ancient Greek philosophical work (like Aristotle's originals)
@@ -256,11 +257,7 @@ You MUST respond in valid JSON format with these exact fields:
     "abstract": "A scholarly abstract of this chunk of text.",
     "natural_breaks": ["Break 1", "Break 2", ...] or [] if none found
 }
-        </pre>
-      </td>
-    </tr>
-  </table>
-</div>
+```
 
 ### Output Example
 
