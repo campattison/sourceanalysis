@@ -152,7 +152,7 @@ Abridged for brevity (database contains entire text)
 </div>
 
 ### Input Example: Classical Arabic Text (Al-Farabi)
-abridged for brevity (database contains entire text)
+Abridged for brevity (database contains entire text)
 <div align="center">
   <table>
     <tr>
