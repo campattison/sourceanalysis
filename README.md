@@ -125,11 +125,6 @@ The following sections demonstrate each stage of the pipeline with concrete exam
 <a id="stage1"></a>
 ## 🧠 Stage 1: Thematizer
 
-<div align="center">
-  <img src="pictures/Bekker_1831_page184.jpg" alt="Bekker Edition of Aristotle" width="500"/>
-  <p><em>Page from Bekker's edition of Aristotle's works (1831), showing the type of texts analyzed by our system</em></p>
-</div>
-
 ### Purpose
 
 The Thematizer performs initial broad analysis of individual texts to identify themes, structure, and key concepts. It serves as the foundation for all subsequent analysis by creating comprehensive thematic profiles for each text.
