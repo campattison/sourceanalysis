@@ -319,8 +319,6 @@ You MUST respond in valid JSON format with these exact fields:
 - **Multilingual Analysis**: Processes texts in Ancient Greek, Classical Arabic, and other languages
 - **Intelligent Chunking**: Handles texts of any length by splitting into manageable chunks while preserving context
 - **Structured Output**: Generates standardized JSON data for consistent downstream processing
-- **Error Handling**: Implements robust retry logic and error recovery mechanisms
-- **Comprehensive Logging**: Maintains detailed logs for transparency and debugging
 
 ---
 
