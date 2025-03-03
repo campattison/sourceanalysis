@@ -75,11 +75,11 @@ Source analysis in classical and medieval philosophy examines how philosophical 
         <li><strong>Non-Standard Citations:</strong> Authors frequently didn't cite sources according to modern conventions</li>
       </ul>
       <h3>Our Solution</h3>
-      <p>Leverage LLMs (Claude and OpenAI) to augment scholarly analysis while maintaining rigorous academic standards, creating a systematic approach that helps reduce confirmation bias in source identification</p>
+      <p>Leverage LLMs (Claude and OpenAI) to do some of the legwork, so that scholars can spend their time more productively</p>
     </td>
     <td width="30%" align="center">
       <img src="pictures/Immanuel_Bekker_-_Imagines_philologorum.jpg" alt="Immanuel Bekker" width="300"/>
-      <p><em>Immanuel Bekker (1785-1871)<br>Classical philologist whose work exemplifies traditional source analysis</em></p>
+      <p><em>Immanuel Bekker (1785-1871)<br>Classical philologist</em></p>
     </td>
   </tr>
 </table>
