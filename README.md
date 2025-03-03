@@ -7,7 +7,7 @@
   <h2>Computational Approaches to Philosophical Text Analysis</h2>
   
   <p><em>LLM API APPROACH</em></p>
-  
+  <p><em>https://github.com/campattison/sourceanalysis</em></p>
   <p>
     <a href="#overview">Overview</a> •
     <a href="#what">Source Analysis</a> •
