@@ -2,7 +2,7 @@
 
 <div align="center">
   
-  <img src="pictures/Bodlein_Library_MS._Arab.d.84_roll332_frame1.jpg" alt="Banner" style="width: 100%; height: 200px; object-fit: cover; object-position: top;"/>
+  ![Banner](pictures/Bodlein_Library_MS._Arab.d.84_roll332_frame1.jpg)
   
   <h2>Computational Approaches to Philosophical Text Analysis</h2>
   
@@ -464,7 +464,7 @@ Analyze these texts and respond in this exact JSON format:
       "analysis": {
         "verbal_parallels": [
           "Both texts discuss mimesis/imitation (محاكاة in Arabic, μίμησις in Greek)",
-          "Shared terminology around tragedy (τραγῳδία/طراغوذيا) and comedy (κωμῳدία/قوموذيا)",
+          "Shared terminology around tragedy (τραγῳδία/طراغوذيا) and comedy (κωμῳδία/قوموذيا)",
           "Discussion of poetic meters and rhythm (وزن/μέτρον)",
           "Treatment of diction and language (لفظ/λέξις)"
         ],
