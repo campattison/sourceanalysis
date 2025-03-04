@@ -41,7 +41,7 @@
 
 <br>
 
-The Source Analysis Recommender is a sophisticated computational pipeline designed to identify and analyze potential source relationships between classical philosophical texts. This system bridges computational linguistics with traditional philological methods to provide evidence-based insights into the transmission of philosophical ideas across linguistic and cultural boundaries, assisting scholars in discovering overlooked textual connections and influences.
+The Source Analysis Recommender is a computational pipeline designed to identify and analyze potential source relationships between classical philosophical texts. This system bridges computational linguistics with traditional philological methods to provide evidence-based insights into the transmission of philosophical ideas across linguistic and cultural boundaries, assisting scholars in discovering overlooked textual connections and influences.
 
 This API approach is one of two approaches we're currently working on. The other is a vector store approach that leverages ModernBERT to conduct quantitative research on text similarities between input and database files. 
 
