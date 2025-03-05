@@ -530,31 +530,6 @@ Analyze these texts and respond in this exact JSON format:
 
 The Deep Analyzer performs in-depth analysis of high-confidence matches identified by the Source Analyzer. It focuses on text pairs with high confidence scores (≥0.7) and provides detailed evidence-based assessment of influence patterns.
 
-### Input Example
-
-The Deep Analyzer takes as input the results from the Source Analyzer:
-
-```json
-{
-  "comparisons": [
-    {
-      "input_file": "aristotle_poetics.txt",
-      "database_file": "alfarabi_poetics.txt",
-      "relevance_score": 0.9,
-      "analysis": {
-        "verbal_parallels": ["..."],
-        "conceptual_parallels": ["..."],
-        "methodological_parallels": ["..."],
-        "technical_vocabulary": ["..."],
-        "analysis_summary": "...",
-        "confidence_score": 0.9,
-        "recommended_research": ["..."]
-      }
-    }
-  ]
-}
-```
-
 
 ### Technical Implementation
 
