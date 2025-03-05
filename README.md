@@ -51,10 +51,11 @@ This API approach is one of two approaches we're currently working on. The other
 
 Source analysis in classical and medieval philosophy examines how philosophical ideas were transmitted, transformed, and developed across time, languages, and cultures. It investigates:
 
-- The philosophical context in which a given text should be interpreted
 - The textual lineage of philosophical works (which texts influenced others)
-- How concepts and arguments were borrowed, adapted, or critiqued
 - Hidden influences that may not be explicitly acknowledged by authors
+- The philosophical context in which a given text should be interpreted
+- How concepts and arguments were borrowed, adapted, or critiqued
+
 
 
 ---
