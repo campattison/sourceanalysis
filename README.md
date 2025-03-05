@@ -130,7 +130,7 @@ The following sections demonstrate each stage of the pipeline with concrete exam
 
 The Thematizer performs initial broad analysis of individual texts to identify themes, structure, and key concepts. It serves as the foundation for all subsequent analysis by creating comprehensive thematic profiles for each text.
 
-### Database Example: Classical Greek Text (Aristotle)
+### Database Excerpt: Classical Greek Text (Aristotle)
 Abridged for brevity (database contains entire text)
 <div align="center">
   <table>
@@ -152,7 +152,7 @@ Abridged for brevity (database contains entire text)
   </table>
 </div>
 
-### Input Example: Classical Arabic Text (Al-Farabi)
+### Input Excerpt: Classical Arabic Text (Al-Farabi)
 Abridged for brevity (database contains entire text)
 <div align="center">
   <table>
