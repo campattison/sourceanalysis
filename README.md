@@ -4,7 +4,7 @@
   
   ![Banner](pictures/Bodlein_Library_MS._Arab.d.84_roll332_frame1.jpg)
   
-  <h2>Computational Approaches to Philosophical Text Analysis</h2>
+  <h2>Computational Approaches to Philosophical Source Analysis</h2>
   
   <p><em>LLM API APPROACH</em></p>
   <p><em>https://github.com/campattison/sourceanalysis</em></p>
