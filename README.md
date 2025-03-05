@@ -945,6 +945,7 @@ The Deep Analyzer provides:
       <h3>⚠️ AI Limitations</h3>
       <ul>
         <li>Requires expert validation</li>
+        <li>Produces Qualitative, rather than quantitative analyses</li>
       </ul>
     </td>
     <td align="center" width="33%">
