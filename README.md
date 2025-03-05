@@ -540,14 +540,14 @@ The Deep Analyzer takes as input the results from the Source Analyzer:
     {
       "input_file": "aristotle_poetics.txt",
       "database_file": "alfarabi_poetics.txt",
-      "relevance_score": 0.85,
+      "relevance_score": 0.9,
       "analysis": {
         "verbal_parallels": ["..."],
         "conceptual_parallels": ["..."],
         "methodological_parallels": ["..."],
         "technical_vocabulary": ["..."],
         "analysis_summary": "...",
-        "confidence_score": 0.85,
+        "confidence_score": 0.9,
         "recommended_research": ["..."]
       }
     }
