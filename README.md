@@ -49,22 +49,14 @@ This API approach is one of two approaches we're currently working on. The other
 <a id="what"></a>
 ## 📜 What is Source Analysis?
 
-<table>
-  <tr>
-    <td width="70%">
+
       Source analysis in classical and medieval philosophy examines how philosophical ideas were transmitted, transformed, and developed across time, languages, and cultures. It investigates:
 
       - The philosophical context in which a given text should be interpreted
       - The textual lineage of philosophical works (which texts influenced others)
       - How concepts and arguments were borrowed, adapted, or critiqued
       - Hidden influences that may not be explicitly acknowledged by authors
-    </td>
-    <td width="30%" align="center">
-      <img src="pictures/Screenshot 2025-03-05 at 10.17.31 AM.png" alt="Stemma codicum by R. Walzer" width="300"/>
-      <p><em>Stemma codicum diagram showing textual transmission across centuries</em></p>
-    </td>
-  </tr>
-</table>
+
 
 ---
 
